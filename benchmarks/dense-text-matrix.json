@@ -1,0 +1,1177 @@
+{
+  "generatedAt": "2026-08-22T19:26:12.434Z",
+  "benchmark": "synthetic dense text exact-code recognition",
+  "seed": 20260823,
+  "pages": [
+    "D01",
+    "D02",
+    "D03",
+    "D04"
+  ],
+  "codesPerPage": 100,
+  "rounds": 3,
+  "experimentalUnit": "page (n=4); three runs are technical repeats",
+  "primaryMetric": "micro exact-code F1 over unique eight-character codes",
+  "pricing": {
+    "currency": "CNY",
+    "date": "2026-08-23",
+    "deepseekRatesPerMillionTokens": {
+      "cacheHitInput": 0.02,
+      "cacheMissInput": 1,
+      "output": 2
+    },
+    "pricingCaveat": "Estimated using the published DeepSeek-V4-Flash rate; the experimental vision model is not separately listed on the public pricing table.",
+    "codexModels": "not exposed"
+  },
+  "summaries": [
+    {
+      "model": "gpt-5.5",
+      "runs": 12,
+      "matched": 1190,
+      "truth": 1200,
+      "predicted": 1198,
+      "microRecall": 0.9916666666666667,
+      "microPrecision": 0.993322203672788,
+      "microF1": 0.9924937447873228,
+      "medianLatencyMs": 27953,
+      "p95LatencyMs": 708112,
+      "promptTokens": null,
+      "completionTokens": null,
+      "tokensPerRun": null,
+      "meanImages": 1,
+      "actualPriceCny": null,
+      "actualPriceCnyPerRun": null,
+      "coldCachePriceCny": null,
+      "coldCachePriceCnyPerRun": null,
+      "unavailableReason": "Codex subscription run does not expose per-task vision/input token accounting or a billable per-task API price."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "runs": 12,
+      "matched": 1137,
+      "truth": 1200,
+      "predicted": 1194,
+      "microRecall": 0.9475,
+      "microPrecision": 0.9522613065326633,
+      "microF1": 0.9498746867167919,
+      "medianLatencyMs": 27484,
+      "p95LatencyMs": 47700,
+      "promptTokens": null,
+      "completionTokens": null,
+      "tokensPerRun": null,
+      "meanImages": 1,
+      "actualPriceCny": null,
+      "actualPriceCnyPerRun": null,
+      "coldCachePriceCny": null,
+      "coldCachePriceCnyPerRun": null,
+      "unavailableReason": "Codex subscription run does not expose per-task vision/input token accounting or a billable per-task API price."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "runs": 12,
+      "matched": 1184,
+      "truth": 1200,
+      "predicted": 1200,
+      "microRecall": 0.9866666666666667,
+      "microPrecision": 0.9866666666666667,
+      "microF1": 0.9866666666666668,
+      "medianLatencyMs": 25172,
+      "p95LatencyMs": 739814,
+      "promptTokens": null,
+      "completionTokens": null,
+      "tokensPerRun": null,
+      "meanImages": 1,
+      "actualPriceCny": null,
+      "actualPriceCnyPerRun": null,
+      "coldCachePriceCny": null,
+      "coldCachePriceCnyPerRun": null,
+      "unavailableReason": "Codex subscription run does not expose per-task vision/input token accounting or a billable per-task API price."
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "runs": 12,
+      "matched": 1152,
+      "truth": 1200,
+      "predicted": 1189,
+      "microRecall": 0.96,
+      "microPrecision": 0.9688814129520605,
+      "microF1": 0.9644202595228129,
+      "medianLatencyMs": 6079.279300000002,
+      "p95LatencyMs": 7293.2261,
+      "promptTokens": 51876,
+      "completionTokens": 7774,
+      "tokensPerRun": 4970.833333333333,
+      "meanImages": 12,
+      "actualPriceCny": 0.054252800000000004,
+      "actualPriceCnyPerRun": 0.004521066666666667,
+      "coldCachePriceCny": 0.067424,
+      "coldCachePriceCnyPerRun": 0.005618666666666667
+    },
+    {
+      "model": "deepseek-direct",
+      "runs": 12,
+      "matched": 229,
+      "truth": 1200,
+      "predicted": 1127,
+      "microRecall": 0.19083333333333333,
+      "microPrecision": 0.20319432120674358,
+      "microF1": 0.1968199398366996,
+      "medianLatencyMs": 6870.202400000009,
+      "p95LatencyMs": 7843.612499999988,
+      "promptTokens": 5292,
+      "completionTokens": 8334,
+      "tokensPerRun": 1135.5,
+      "meanImages": 1,
+      "actualPriceCny": 0.02196,
+      "actualPriceCnyPerRun": 0.00183,
+      "coldCachePriceCny": 0.02196,
+      "coldCachePriceCnyPerRun": 0.00183
+    }
+  ],
+  "rows": [
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "D01",
+      "predicted": 99,
+      "matched": 98,
+      "truth": 100,
+      "recall": 0.98,
+      "precision": 0.98989898989899,
+      "f1": 0.9849246231155778,
+      "latencyMs": 29460,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "D02",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 34103,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 708112,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 34908,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "D01",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 10877,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 98,
+      "truth": 100,
+      "recall": 0.98,
+      "precision": 0.98989898989899,
+      "f1": 0.9849246231155778,
+      "latencyMs": 15642,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 12779,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 23713,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "D01",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 31135,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "D02",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 44041,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 27046,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 27953,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "D01",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 42556,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "D02",
+      "predicted": 100,
+      "matched": 96,
+      "truth": 100,
+      "recall": 0.96,
+      "precision": 0.96,
+      "f1": 0.96,
+      "latencyMs": 47700,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 89,
+      "truth": 100,
+      "recall": 0.89,
+      "precision": 0.89,
+      "f1": 0.89,
+      "latencyMs": 46436,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.94,
+      "f1": 0.94,
+      "latencyMs": 41961,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "D01",
+      "predicted": 99,
+      "matched": 97,
+      "truth": 100,
+      "recall": 0.97,
+      "precision": 0.9797979797979798,
+      "f1": 0.9748743718592964,
+      "latencyMs": 25056,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 95,
+      "truth": 100,
+      "recall": 0.95,
+      "precision": 0.9595959595959596,
+      "f1": 0.9547738693467336,
+      "latencyMs": 29991,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "D03",
+      "predicted": 99,
+      "matched": 91,
+      "truth": 100,
+      "recall": 0.91,
+      "precision": 0.9191919191919192,
+      "f1": 0.9145728643216081,
+      "latencyMs": 26744,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.94,
+      "f1": 0.94,
+      "latencyMs": 27484,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "D01",
+      "predicted": 99,
+      "matched": 96,
+      "truth": 100,
+      "recall": 0.96,
+      "precision": 0.9696969696969697,
+      "f1": 0.964824120603015,
+      "latencyMs": 23718,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 97,
+      "truth": 100,
+      "recall": 0.97,
+      "precision": 0.9797979797979798,
+      "f1": 0.9748743718592964,
+      "latencyMs": 27133,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "D03",
+      "predicted": 99,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.9494949494949495,
+      "f1": 0.9447236180904524,
+      "latencyMs": 35984,
+      "outputCharacters": 898
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 95,
+      "truth": 100,
+      "recall": 0.95,
+      "precision": 0.95,
+      "f1": 0.9500000000000001,
+      "latencyMs": 26301,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "D01",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 43490,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "D02",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 739814,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 96,
+      "truth": 100,
+      "recall": 0.96,
+      "precision": 0.96,
+      "f1": 0.96,
+      "latencyMs": 30606,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 27399,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "D01",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 13211,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "D02",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 17001,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 97,
+      "truth": 100,
+      "recall": 0.97,
+      "precision": 0.97,
+      "f1": 0.97,
+      "latencyMs": 26324,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 24326,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "D01",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 23210,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "D02",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 28711,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 97,
+      "truth": 100,
+      "recall": 0.97,
+      "precision": 0.97,
+      "f1": 0.97,
+      "latencyMs": 24432,
+      "outputCharacters": 899
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 100,
+      "truth": 100,
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 25172,
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 1,
+      "id": "D01",
+      "predicted": 96,
+      "matched": 30,
+      "truth": 100,
+      "recall": 0.3,
+      "precision": 0.3125,
+      "f1": 0.3061224489795918,
+      "latencyMs": 6449.859599999996,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 403,
+        "completion_tokens": 648,
+        "total_tokens": 1051,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 403
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 1,
+      "id": "D01",
+      "predicted": 98,
+      "matched": 95,
+      "truth": 100,
+      "recall": 0.95,
+      "precision": 0.9693877551020408,
+      "f1": 0.9595959595959594,
+      "latencyMs": 6130.303500000002,
+      "imageCount": 10,
+      "usage": {
+        "prompt_tokens": 3539,
+        "completion_tokens": 641,
+        "total_tokens": 4180,
+        "prompt_tokens_details": {
+          "cached_tokens": 3328
+        },
+        "prompt_cache_hit_tokens": 3328,
+        "prompt_cache_miss_tokens": 211
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 1,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 47,
+      "truth": 100,
+      "recall": 0.47,
+      "precision": 0.47474747474747475,
+      "f1": 0.4723618090452262,
+      "latencyMs": 6412.188399999999,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 467,
+        "completion_tokens": 642,
+        "total_tokens": 1109,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 467
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 1,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 98,
+      "truth": 100,
+      "recall": 0.98,
+      "precision": 0.98989898989899,
+      "f1": 0.9849246231155778,
+      "latencyMs": 5790.622900000002,
+      "imageCount": 10,
+      "usage": {
+        "prompt_tokens": 3547,
+        "completion_tokens": 646,
+        "total_tokens": 4193,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3547
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 1,
+      "id": "D03",
+      "predicted": 91,
+      "matched": 0,
+      "truth": 100,
+      "recall": 0,
+      "precision": 0,
+      "f1": 0,
+      "latencyMs": 7331.164199999999,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 765,
+        "total_tokens": 1204,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 439
+      },
+      "outputCharacters": 894
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 1,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.94,
+      "f1": 0.94,
+      "latencyMs": 5764.948800000013,
+      "imageCount": 14,
+      "usage": {
+        "prompt_tokens": 5075,
+        "completion_tokens": 657,
+        "total_tokens": 5732,
+        "prompt_tokens_details": {
+          "cached_tokens": 4864
+        },
+        "prompt_cache_hit_tokens": 4864,
+        "prompt_cache_miss_tokens": 211
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 1,
+      "id": "D04",
+      "predicted": 85,
+      "matched": 0,
+      "truth": 100,
+      "recall": 0,
+      "precision": 0,
+      "f1": 0,
+      "latencyMs": 6876.568700000003,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 716,
+        "total_tokens": 1171,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 455
+      },
+      "outputCharacters": 886
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 1,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 6017.689099999996,
+      "imageCount": 14,
+      "usage": {
+        "prompt_tokens": 5131,
+        "completion_tokens": 647,
+        "total_tokens": 5778,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5131
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 2,
+      "id": "D01",
+      "predicted": 98,
+      "matched": 30,
+      "truth": 100,
+      "recall": 0.3,
+      "precision": 0.30612244897959184,
+      "f1": 0.3030303030303031,
+      "latencyMs": 6870.202400000009,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 403,
+        "completion_tokens": 648,
+        "total_tokens": 1051,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 403
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 2,
+      "id": "D01",
+      "predicted": 97,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.9690721649484536,
+      "f1": 0.9543147208121826,
+      "latencyMs": 6279.262000000001,
+      "imageCount": 10,
+      "usage": {
+        "prompt_tokens": 3539,
+        "completion_tokens": 642,
+        "total_tokens": 4181,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3539
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 2,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 46,
+      "truth": 100,
+      "recall": 0.46,
+      "precision": 0.46464646464646464,
+      "f1": 0.4623115577889447,
+      "latencyMs": 5644.368199999997,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 467,
+        "completion_tokens": 646,
+        "total_tokens": 1113,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 467
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 2,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 97,
+      "truth": 100,
+      "recall": 0.97,
+      "precision": 0.9797979797979798,
+      "f1": 0.9748743718592964,
+      "latencyMs": 6434.349900000001,
+      "imageCount": 10,
+      "usage": {
+        "prompt_tokens": 3547,
+        "completion_tokens": 647,
+        "total_tokens": 4194,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3547
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 2,
+      "id": "D03",
+      "predicted": 92,
+      "matched": 0,
+      "truth": 100,
+      "recall": 0,
+      "precision": 0,
+      "f1": 0,
+      "latencyMs": 7285.008100000006,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 762,
+        "total_tokens": 1201,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 439
+      },
+      "outputCharacters": 893
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 2,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 92,
+      "truth": 100,
+      "recall": 0.92,
+      "precision": 0.92,
+      "f1": 0.92,
+      "latencyMs": 6491.364000000001,
+      "imageCount": 14,
+      "usage": {
+        "prompt_tokens": 5075,
+        "completion_tokens": 656,
+        "total_tokens": 5731,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5075
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 2,
+      "id": "D04",
+      "predicted": 89,
+      "matched": 0,
+      "truth": 100,
+      "recall": 0,
+      "precision": 0,
+      "f1": 0,
+      "latencyMs": 7843.612499999988,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 714,
+        "total_tokens": 1169,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 455
+      },
+      "outputCharacters": 888
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 2,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 6873.7687000000005,
+      "imageCount": 14,
+      "usage": {
+        "prompt_tokens": 5131,
+        "completion_tokens": 647,
+        "total_tokens": 5778,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 3211
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 3,
+      "id": "D01",
+      "predicted": 97,
+      "matched": 29,
+      "truth": 100,
+      "recall": 0.29,
+      "precision": 0.29896907216494845,
+      "f1": 0.29441624365482233,
+      "latencyMs": 6022.823500000002,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 403,
+        "completion_tokens": 649,
+        "total_tokens": 1052,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 403
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 3,
+      "id": "D01",
+      "predicted": 97,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.9690721649484536,
+      "f1": 0.9543147208121826,
+      "latencyMs": 6079.279300000002,
+      "imageCount": 10,
+      "usage": {
+        "prompt_tokens": 3539,
+        "completion_tokens": 640,
+        "total_tokens": 4179,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3539
+      },
+      "outputCharacters": 898
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 3,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 46,
+      "truth": 100,
+      "recall": 0.46,
+      "precision": 0.46464646464646464,
+      "f1": 0.4623115577889447,
+      "latencyMs": 6710.297300000006,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 467,
+        "completion_tokens": 649,
+        "total_tokens": 1116,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 467
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 3,
+      "id": "D02",
+      "predicted": 99,
+      "matched": 97,
+      "truth": 100,
+      "recall": 0.97,
+      "precision": 0.9797979797979798,
+      "f1": 0.9748743718592964,
+      "latencyMs": 5733.729500000001,
+      "imageCount": 10,
+      "usage": {
+        "prompt_tokens": 3547,
+        "completion_tokens": 647,
+        "total_tokens": 4194,
+        "prompt_tokens_details": {
+          "cached_tokens": 3328
+        },
+        "prompt_cache_hit_tokens": 3328,
+        "prompt_cache_miss_tokens": 219
+      },
+      "outputCharacters": 900
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 3,
+      "id": "D03",
+      "predicted": 92,
+      "matched": 0,
+      "truth": 100,
+      "recall": 0,
+      "precision": 0,
+      "f1": 0,
+      "latencyMs": 7229.458199999994,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 765,
+        "total_tokens": 1204,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 439
+      },
+      "outputCharacters": 893
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 3,
+      "id": "D03",
+      "predicted": 100,
+      "matched": 94,
+      "truth": 100,
+      "recall": 0.94,
+      "precision": 0.94,
+      "f1": 0.94,
+      "latencyMs": 7293.2261,
+      "imageCount": 14,
+      "usage": {
+        "prompt_tokens": 5075,
+        "completion_tokens": 657,
+        "total_tokens": 5732,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5075
+      },
+      "outputCharacters": 899
+    },
+    {
+      "model": "deepseek-direct",
+      "round": 3,
+      "id": "D04",
+      "predicted": 90,
+      "matched": 1,
+      "truth": 100,
+      "recall": 0.01,
+      "precision": 0.011111111111111112,
+      "f1": 0.010526315789473684,
+      "latencyMs": 6903.282900000006,
+      "imageCount": 1,
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 730,
+        "total_tokens": 1185,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 455
+      },
+      "outputCharacters": 889
+    },
+    {
+      "model": "deepseek-v2-plugin",
+      "round": 3,
+      "id": "D04",
+      "predicted": 100,
+      "matched": 99,
+      "truth": 100,
+      "recall": 0.99,
+      "precision": 0.99,
+      "f1": 0.99,
+      "latencyMs": 5893.146900000002,
+      "imageCount": 14,
+      "usage": {
+        "prompt_tokens": 5131,
+        "completion_tokens": 647,
+        "total_tokens": 5778,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5131
+      },
+      "outputCharacters": 899
+    }
+  ]
+}

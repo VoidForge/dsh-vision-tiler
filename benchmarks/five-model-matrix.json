@@ -1,0 +1,1670 @@
+{
+  "generatedAt": "2026-08-22T19:21:26.066Z",
+  "design": {
+    "samples": [
+      "008",
+      "009",
+      "010",
+      "011"
+    ],
+    "rounds": 3,
+    "codexReasoningEffort": "medium",
+    "deepSeekRunOrderSeed": 20260823,
+    "metric": "macro mean per-run unique-word recall against SROIE OCR labels"
+  },
+  "arms": [
+    {
+      "arm": "gpt-5.5",
+      "provider": "Codex subscription",
+      "runs": 12,
+      "meanRecall": 0.9540213443467619,
+      "meanPrecision": 0.9475339199084428,
+      "meanF1": 0.9507247083102145,
+      "medianLatencyMs": 17977,
+      "p95LatencyMs": 62817,
+      "meanOutputCharacters": 889.5833333333334,
+      "promptTokens": null,
+      "completionTokens": null,
+      "priceCny": null,
+      "observabilityNote": "Codex agent surface does not expose billed input/image tokens or per-task currency cost."
+    },
+    {
+      "arm": "gpt-5.6-luna",
+      "provider": "Codex subscription",
+      "runs": 12,
+      "meanRecall": 0.9381196331829643,
+      "meanPrecision": 0.9389928697609374,
+      "meanF1": 0.9385346044433844,
+      "medianLatencyMs": 20719,
+      "p95LatencyMs": 58568,
+      "meanOutputCharacters": 1197.5,
+      "promptTokens": null,
+      "completionTokens": null,
+      "priceCny": null,
+      "observabilityNote": "Codex agent surface does not expose billed input/image tokens or per-task currency cost."
+    },
+    {
+      "arm": "gpt-5.6-terra",
+      "provider": "Codex subscription",
+      "runs": 12,
+      "meanRecall": 0.9478397692186863,
+      "meanPrecision": 0.9512171346747036,
+      "meanF1": 0.9495192216253185,
+      "medianLatencyMs": 21911,
+      "p95LatencyMs": 81324,
+      "meanOutputCharacters": 970.25,
+      "promptTokens": null,
+      "completionTokens": null,
+      "priceCny": null,
+      "observabilityNote": "Codex agent surface does not expose billed input/image tokens or per-task currency cost."
+    },
+    {
+      "arm": "deepseek-no-plugin",
+      "provider": "deepseek-v4-flash-vision-exp",
+      "runs": 12,
+      "meanRecall": 0.9442516051364366,
+      "meanPrecision": 0.9379004754603129,
+      "meanF1": 0.9410383791355857,
+      "medianLatencyMs": 4681.117700000001,
+      "p95LatencyMs": 7132.9905,
+      "meanOutputCharacters": 924.1666666666666,
+      "promptTokens": 5088,
+      "completionTokens": 4484,
+      "meanImages": 1,
+      "priceCny": 0.014055999999999999,
+      "priceCnyPerRun": 0.0011713333333333333,
+      "coldCachePriceCny": 0.014055999999999999,
+      "coldCachePriceCnyPerRun": 0.0011713333333333333,
+      "pricing": {
+        "pricingPeriod": "DeepSeek-V4-Flash published rate verified 2026-08-23",
+        "currency": "CNY",
+        "cacheHitInputPerMillion": 0.02,
+        "cacheMissInputPerMillion": 1,
+        "outputPerMillion": 2,
+        "pricingCaveat": "Estimated using the published DeepSeek-V4-Flash rate; the experimental vision model is not separately listed.",
+        "total": 0.014055999999999999,
+        "coldCacheTotal": 0.014055999999999999
+      }
+    },
+    {
+      "arm": "deepseek-v2-plugin",
+      "provider": "deepseek-v4-flash-vision-exp",
+      "runs": 12,
+      "meanRecall": 0.976227260567148,
+      "meanPrecision": 0.9599078161227038,
+      "meanF1": 0.9679661661958181,
+      "medianLatencyMs": 16230.47400000001,
+      "p95LatencyMs": 22542.360199999996,
+      "meanOutputCharacters": 803.5,
+      "promptTokens": 25968,
+      "completionTokens": 4353,
+      "meanImages": 6.5,
+      "priceCny": 0.02200456,
+      "priceCnyPerRun": 0.0018337133333333332,
+      "coldCachePriceCny": 0.034674,
+      "coldCachePriceCnyPerRun": 0.0028895,
+      "pricing": {
+        "pricingPeriod": "DeepSeek-V4-Flash published rate verified 2026-08-23",
+        "currency": "CNY",
+        "cacheHitInputPerMillion": 0.02,
+        "cacheMissInputPerMillion": 1,
+        "outputPerMillion": 2,
+        "pricingCaveat": "Estimated using the published DeepSeek-V4-Flash rate; the experimental vision model is not separately listed.",
+        "total": 0.02200456,
+        "coldCacheTotal": 0.034674
+      }
+    }
+  ],
+  "ablations": [
+    {
+      "arm": "deepseek-v1-uniform",
+      "runs": 12,
+      "meanRecall": 0.9714653558052433,
+      "meanPrecision": 0.955278186493074,
+      "meanF1": 0.9632713305150671,
+      "medianLatencyMs": 12622.085499999986,
+      "p95LatencyMs": 21746.251099999994,
+      "meanOutputCharacters": 808.0833333333334,
+      "promptTokens": 23280,
+      "completionTokens": 4363,
+      "meanImages": 5.5,
+      "pricing": {
+        "pricingPeriod": "DeepSeek-V4-Flash published rate verified 2026-08-23",
+        "currency": "CNY",
+        "cacheHitInputPerMillion": 0.02,
+        "cacheMissInputPerMillion": 1,
+        "outputPerMillion": 2,
+        "pricingCaveat": "Estimated using the published DeepSeek-V4-Flash rate; the experimental vision model is not separately listed.",
+        "total": 0.026612079999999996,
+        "coldCacheTotal": 0.032006
+      }
+    },
+    {
+      "arm": "deepseek-v2-adaptive-two-details",
+      "runs": 12,
+      "meanRecall": 0.9754336097734972,
+      "meanPrecision": 0.9591362111844322,
+      "meanF1": 0.9671836935823596,
+      "medianLatencyMs": 14811.970399999991,
+      "p95LatencyMs": 26756.100300000006,
+      "meanOutputCharacters": 814.5833333333334,
+      "promptTokens": 28656,
+      "completionTokens": 4362,
+      "meanImages": 7.5,
+      "pricing": {
+        "pricingPeriod": "DeepSeek-V4-Flash published rate verified 2026-08-23",
+        "currency": "CNY",
+        "cacheHitInputPerMillion": 0.02,
+        "cacheMissInputPerMillion": 1,
+        "outputPerMillion": 2,
+        "pricingCaveat": "Estimated using the published DeepSeek-V4-Flash rate; the experimental vision model is not separately listed.",
+        "total": 0.03198608,
+        "coldCacheTotal": 0.037380000000000004
+      }
+    }
+  ],
+  "codexRuns": [
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "008",
+      "recall": 0.9238095238095239,
+      "precision": 0.9150943396226415,
+      "f1": 0.9194312796208531,
+      "latencyMs": 29371,
+      "outputCharacters": 1467,
+      "text": "A020455\nPERNIAGAAN ZHENG HUI\nJM0323955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL : 07-386 7524   FAX : 07-386 3793\nGST NO : 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt #: CS00082652\nSalesperson:\nCashier: USER\nDate: 12/02/2018\nTime: 08:30:00\nItem                         Qty     (RM)       (RM)\n                                    RSP       Amount\n8239                         G/B      1       16.00       16.00\nSR: 11\" PROWESS HOLITY SILICONE GUN G-B2\n9555075109147                G/B      3        7.00       21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744                         G/B      1       18.00       18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12625                        G/B      1       50.00       50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016                         G/H      3        0.70        2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY:        9                         106.10\n(Excluded GST) Sub Total (RM) :       106.10\nDiscount (RM) :                         0.00\nTotal GST (RM) :                         6.37\nRounding (RM) :                         -0.02\nTotal (RM) :                            112.45\nCASH :                                  112.45\nChange (RM) :                             0.00\nGST SUMMARY\nTax Code        %        Amount        GST\nSR              6        106.10        6.37\nTotal:                   106.10        6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "009",
+      "recall": 1,
+      "precision": 0.9732142857142857,
+      "f1": 0.9864253393665159,
+      "latencyMs": 13480,
+      "outputCharacters": 1029,
+      "text": "ILL\npenny\n0598\n1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM                                TOTAL\n2 ChicMcMuffin                          11.00\n1 M Porridge                             5.60\n1 BM 2HotCakes                          10.00\n  1 L Coke\nTakeOut Total (incl GST)                26.60\nTotal Rounded                           26.60\nCash Tendered                          100.00\nChange                                  73.40\nTOTAL INCLUDES 6% GST                    1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My MCD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "010",
+      "recall": 0.9625,
+      "precision": 0.9625,
+      "f1": 0.9625000000000001,
+      "latencyMs": 17977,
+      "outputCharacters": 888,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013        1 X     5.20        5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'S8\n2??0008              1 X     8.90        8.90 S\nNo. Qtys:            2 No. Items:        2\nTAX AMT (S) 6%                       RM 13.30\nGST 6%                               RM 0.80\nTAX AMT (Z) 0%                      -RM 0.00\nGST 0%                               RM 0.00\nTAX AMT (E) 6%                       RM 0.00\nEXC GST 6%                           RM 0.00\nTOTAL                                RM 14.10\nCASH                                 RM 20.00\nCHANGE                               RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017 Time : 20:17\nCas, r : SAM SAM\nWc5 SWH D1 Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 1,
+      "id": "011",
+      "recall": 0.9662921348314607,
+      "precision": 0.9662921348314607,
+      "f1": 0.9662921348314607,
+      "latencyMs": 62817,
+      "outputCharacters": 1119,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM\nTEL: 012 - 6631783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:29:00\nITEM                    QTY      U/P      AMOUNT\n                                (RM)       (RM)\n2000160000024            1      15.00      15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\n.TAL QUANTITY                    1\nSUB-TOTAL (GST)                 15.00\nDISC                             0.00\nROUNDING                         0.00\nTOTAL                           15.00\nCASH                            15.00\nCHANGE                           0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE               AMOUNT       %       TAX/AMT\nSR                 14.15        6        0.85\nTAX TOTAL:                              0.85\nGOODS SOLD ARE NOT REFUNDABLE,\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "008",
+      "recall": 0.8857142857142857,
+      "precision": 0.8773584905660378,
+      "f1": 0.8815165876777252,
+      "latencyMs": 14209,
+      "outputCharacters": 915,
+      "text": "A020455\n\nPERNIAGAAN ZHENG HUI\nJM0325956-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-3867524  FAX: 07-3863793\nGST NO: 000800589824\n\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt #: CS00082562\nSalesperson:\nCashier: USER\nDate: 12/02/2018\nTime: 08:30:00\n\nItem\nQty\n(RM)\nRSP\n(RM)\nAmount\n8239\nG/B\n1\n16.00\n16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-B2\n8555075109147\nG/R\n3\n7.00\n21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744\nG/R\n1\n18.00\n18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12625\nG/R\n1\n50.00\n50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016\nG/R\n3\n0.70\n2.10\nSR: PVC WIRE TAPE 1PC X7YD\nTOT QTY:\n9\n106.10\n\n(Excluded GST) Sub Total (RM):\n106.10\nDiscount (RM):\n0.00\nTotal GST (RM):\n6.37\nRounding (RM):\n-0.02\nTotal (RM):\n112.46\nCASH:\n112.45\nChange (RM):\n0.00\n\nGST SUMMARY\nTax Code\n%\nAmount\nGST\nSR\n6\n106.10\n6.37\nTotal:\n106.10\n6.37\n\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "009",
+      "recall": 1,
+      "precision": 0.9732142857142857,
+      "f1": 0.9864253393665159,
+      "latencyMs": 16647,
+      "outputCharacters": 809,
+      "text": "KL\npeang\n0398\n\n1950\n\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\n\nMFY Side 1\n\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM\nTOTAL\n2 ChicMcMuffin\n11.00\n1 M Porridge\n5.60\n1 BM 2HotCakes\n10.00\n1 L Coke\n\nTakeOut Total (incl GST)\n26.60\nTotal Rounded\n26.60\nCash Tendered\n100.00\nChange\n73.40\n\nTOTAL INCLUDES 6% GST\n1.51\n\nWe'd love to hear your feedback!\n\nsit www.mcdfeedback.com.my\nOR\nDownload My MCD Feedback from\nGoogle Play/App Store\n\nto share your experience\n\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "010",
+      "recall": 0.95,
+      "precision": 0.95,
+      "f1": 0.9500000000000001,
+      "latencyMs": 15804,
+      "outputCharacters": 590,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213981\nGST NO: 001006288896\n\nTAX INVOICE\n\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013\n1 X\n5.20\n5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'S8\n220008\n1 X\n8.90\n8.90 S\n\nNo. Qtys:\n2 No. Items:\n2\n\nTAX AMT (S) 6%\nRM 13.30\nGST 6%\nRM 0.80\nTAX AMT (Z) 0%\nRM 0.00\nGST 0%\nRM 0.00\nTAX AMT (E) 6%\nRM 0.00\nEXC GST 6%\nRM 0.00\n\nTOTAL\nRM 14.10\nCASH\nRM 20.00\n\nCHANGE\nRM 5.90\n\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas, r : SAM SAM\nWc5 SWH D1 Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 2,
+      "id": "011",
+      "recall": 0.9438202247191011,
+      "precision": 0.9545454545454546,
+      "f1": 0.9491525423728814,
+      "latencyMs": 34472,
+      "outputCharacters": 793,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6631703 FAX: 03 - 33623608\nGST NO: 000394928768\n\nSIMPLIFIED TAX INVOICE\n\nCASH\n\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:29:00\n\nITEM\nQTY\nU/P\nAMOUNT\n(RM)\n(RM)\n2000160000024\n1\n15.00\n15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\n\nTOTAL QUANTITY\n1\n\nSUB-TOTAL (GST)\n15.00\nDISC\n0.00\nROUNDING\n0.00\nTOTAL\n15.00\nCASH\n15.00\nCHANGE\n0.00\n\n*GST @ 6% INCLUDED IN TOTAL\n\nGST SUMMARY\n\nCODE\nAMOUNT\n%\nTAX/AMT\nSR\n14.15\n6\n0.85\n\nTAX TOTAL:\n0.85\n\nGOODS SOLD ARE NOT REFUNDABLE,\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "008",
+      "recall": 0.8952380952380953,
+      "precision": 0.9038461538461539,
+      "f1": 0.8995215311004785,
+      "latencyMs": 12239,
+      "outputCharacters": 900,
+      "text": "A0>>0<45\nPERNIAGAAN ZHENG HUI\nJM0325956-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL : 07-3867524 FAX : 07-3863793\nGST NO : 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt #: CS00082562\nSalesperson:\nCashier: USER Date: 12/02/2018\nTime: 08:30:00\nItem Qty (RM) (RM)\nRSP Amount\n8239 1 15.00 15.00\nSR: 11\" PROWESS HOLITY SILICONE GUN G-02\n8558075109147 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n15625 1 50.00 50.00\nSR. 24\" MARKSMAN PIPE WRENCH\n2016 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.45\nCASH : 112.45\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal: 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "009",
+      "recall": 0.9908256880733946,
+      "precision": 0.9642857142857143,
+      "f1": 0.9773755656108598,
+      "latencyMs": 15186,
+      "outputCharacters": 802,
+      "text": "ICC\npromo\n0398\n1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nVisit www.mcdfeedback.com.my\nOR\nDownload My MCD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "010",
+      "recall": 0.975,
+      "precision": 0.975,
+      "f1": 0.975,
+      "latencyMs": 44354,
+      "outputCharacters": 583,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'S8\n2???008 1 X 8.90 8.90 S\nNo. Qtys: 2 No. Items: 2\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\nTOTAL RM 14.10\nCASH RM 20.00\nCHANGE RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017 Time : 20:17\nCas, r : SAM SAM\nWc5 SWH D1 Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.5",
+      "round": 3,
+      "id": "011",
+      "recall": 0.9550561797752809,
+      "precision": 0.9550561797752809,
+      "f1": 0.9550561797752809,
+      "latencyMs": 19118,
+      "outputCharacters": 780,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM\nTEL: 012 - 6631783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:29:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE,\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "008",
+      "recall": 0.8952380952380953,
+      "precision": 0.912621359223301,
+      "f1": 0.903846153846154,
+      "latencyMs": 15295,
+      "outputCharacters": 1473,
+      "text": "PERNIAGAAN ZHENG HUI\nJMB0325955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL : 07-386 7524    FAX : 07-386 3793\nGST NO : 000800589824\nSIMPLIFIED TAX INVOICE\nGODGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00028562\nSalesperson:                       Date: 12/02/2018\nCashier: USER                       Time: 08:30:00\nItem                         Qty       (RM)       (RM)\n                              RSP      Amount\nB239                          1         15.00      15.00\nSR: 11\" PROGRESS DUTY SILICONE CEILING G-02\n9555075109147                  3          7.00      21.00\nSR: X'TRASEAL R.V ACETIC SILICONE SA-107\n9744                          1         18.00      18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525                         1         50.00      50.00\nSR. 24\" MARKSMAN PIPE WRENCH\n2016                          3          0.70       2.10\nSR: PVC VINYL TAPE 1PC X 7YD\nTOT QTY: 9                              106.10\n(Excluded GST) Sub Total (RM) :          106.10\nDiscount (RM) :                            0.00\nTotal GST (RM) :                           6.37\nRounding (RM) :                           -0.02\nTotal (RM) :                             112.45\nCASH                                     112.45\nChange (RM) :                              0.00\nGST SUMMARY\nTax Code        %       Amount      GST\nSR              6       106.10      6.37\nTotal:                  106.10      6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "009",
+      "recall": 0.9908256880733946,
+      "precision": 0.9908256880733946,
+      "f1": 0.9908256880733946,
+      "latencyMs": 14310,
+      "outputCharacters": 1065,
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati (#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM                                      TOTAL\n2 ChicMcMuffin                                11.00\n1 M Porridge                                   5.60\n1 BM 2HotCakes                                10.00\n1 L Coke\nTakeOut Total (incl GST)                      26.60\nTotal Rounded                                26.60\nCash Tendered                               100.00\nChange                                       73.40\nTOTAL INCLUDES 6% GST                         1.51\nWe'd love to hear your feedback!\nVisit www.mcdfeedback.com.my\nOR\nDownload My MCD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "010",
+      "recall": 0.9125,
+      "precision": 0.9125,
+      "f1": 0.9125,
+      "latencyMs": 20719,
+      "outputCharacters": 912,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MERAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EDG UNICORN TWIN SUPER GLUE USG-99-\n955736803013          1 X   5.20      5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'58\n2200008               1 X   8.90      8.90 S\nNo. Qtys:                 2 No. Items:       2\nTAX AMT (S) 6%                         RM 13.30\nGST 6%                                  RM 0.80\nTAX AMT (Z) 0%                         RM 0.00\nGST 0%                                  RM 0.00\nTAX AMT (E) 6%                         RM 0.00\nEXC GST 6%                             RM 0.00\nTOTAL                                  RM 14.10\nCASH                                   RM 20.00\nCHANGE                                 RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017  Time : 20:17\nCas.   r : SAM SAM\nWc5  SWH  01  Inv:ROOD721136"
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 1,
+      "id": "011",
+      "recall": 0.9438202247191011,
+      "precision": 0.9545454545454546,
+      "f1": 0.9491525423728814,
+      "latencyMs": 49225,
+      "outputCharacters": 1201,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X)  U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 0003945458768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP039921 DATE: 15/06/2017\nSALESPERSON : AH002    TIME: 15:29:00\nITEM                         QTY      U/P      AMOUNT\n                                      (RM)       (RM)\n2000160000024                  1       15.00      15.00 S\n20\" 1.6KG X 500MM  BIG STRETCH FILM ???\nTOTAL QUANTITY                         1\nSUB-TOTAL (GST)                         15.00\nDISC                                      0.00\nROUNDING                                  0.00\nTOTAL                                    15.00\nCASH                                     15.00\nCHANGE                                    0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE               AMOUNT       %      TAX/AMT\nSR                   14.15      6       0.85\nTAX TOTAL:                              0.85\nGOODS SOLD ARE NOT REFUNDABLE,\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS'\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "008",
+      "recall": 0.9142857142857143,
+      "precision": 0.897196261682243,
+      "f1": 0.9056603773584906,
+      "latencyMs": 21929,
+      "outputCharacters": 1519,
+      "text": "A?o?es\n\nPERNIAGAAN ZHENG HUI\nJM0328955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524    FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGODGANT ENGINEERING (M) SDN BHD\nReceipt#: CS0002652\nSalesperson:                 Date: 12/02/2018\nCashier: USER                Time: 08:30:00\nItem                         Qty       (RM)       (RM)\n                              RSP      Amount\n8239                         1         15.00      15.00\nSR: 11\" PROWESS HEAVY DUTY SILICONE CEILING G-92-\n8555075109147                 3          7.00      21.00\nSR: X'TRASEAL RTV ACETIC SILICONE SA-107\n9744                         1         18.00      18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525                        1         50.00      50.00\nSR. 24\" MARKSMAN PIPE WRENCH\n2016                         3          0.70       2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9                                      106.10\n(Excluded GST) Sub Total (RM) :                 106.10\nDiscount (RM) :                                   0.00\nTotal GST (RM) :                                  6.37\nRounding (RM) :                                  -0.02\nTotal (RM) :                                    112.45\nCASH :                                          112.45\nChange (RM) :                                     0.00\nGST SUMMARY\nTax Code       %       Amount       GST\nSR             6       106.10       6.37\nTotal:                 106.10       6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "009",
+      "recall": 0.9908256880733946,
+      "precision": 0.9908256880733946,
+      "f1": 0.9908256880733946,
+      "latencyMs": 12849,
+      "outputCharacters": 1078,
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati (#328)\nTel No.: 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM                                      TOTAL\n2 ChicMcMuffin                                 11.00\n1 M Porridge                                    5.60\n1 BM 2HotCakes                                 10.00\n1 L Coke\nTakeOut Total (incl GST)                       26.60\nTotal Rounded                                  26.60\nCash Tendered                                 100.00\nChange                                         73.40\nTOTAL INCLUDES 6% GST                           1.51\nWe'd love to hear your feedback!\nVisit www.mcdfeedback.com.my\nOR\nDownload My MCD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "010",
+      "recall": 0.9125,
+      "precision": 0.9012345679012346,
+      "f1": 0.9068322981366459,
+      "latencyMs": 58568,
+      "outputCharacters": 1111,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MERAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\n================================================\nHE EDG UNICORN TWIN SUPER GLUE USG-99-\n9557360803013             1 X   5.20      5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'58\n230?008                   1 X   8.90      8.90 S\nNo. Qtys:                 2 No. Items:        2\n------------------------------------------------\nTAX AMT (S) 6%                         RM 13.30\nGST 6%                                 RM 0.80\nTAX AMT (Z) 0%                        -RM 0.00\nGST 0%                                 RM 0.00\nTAX AMT (E) 6%                         RM 0.00\nEXC GST 6%                             RM 0.00\n------------------------------------------------\nTOTAL                                  RM 14.10\nCASH                                   RM 20.00\nCHANGE                                 RM 5.90\n------------------------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017  Time : 20:17\nCas.  r : SAM SAM\nWc5 SWR 01  Inv:R00721136"
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 2,
+      "id": "011",
+      "recall": 0.9438202247191011,
+      "precision": 0.9545454545454546,
+      "f1": 0.9491525423728814,
+      "latencyMs": 20224,
+      "outputCharacters": 1253,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13/X, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 0003945458768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP039921 DATE: 15/06/2017\nSALESPERSON : AH002    TIME: 15:29:00\nITEM                         QTY       U/P       AMOUNT\n                                     (RM)       (RM)\n2000160000024                 1        15.00      15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY                        1\nSUB-TOTAL (GST)                              15.00\nDISC                                         0.00\nROUNDING                                     0.00\nTOTAL                                        15.00\nCASH                                         15.00\nCHANGE                                        0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE                         AMOUNT       %      TAX/AMT\nSR                            14.15        6       0.85\nTAX TOTAL:                                      0.85\nGOODS SOLD ARE NOT REFUNDABLE,\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS'\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "008",
+      "recall": 0.8952380952380953,
+      "precision": 0.8952380952380953,
+      "f1": 0.8952380952380953,
+      "latencyMs": 16415,
+      "outputCharacters": 1566,
+      "text": "PERNIAGAAN ZHENG HUI\nJM0328955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-386 7524   FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGODGANT ENGINEERING (M) SDN BHD\nReceipt#: CSC0002652\nSalesperson:                          Date: 12/02/2018\nCashier: USER                         Time: 08:30:00\nItem                              Qty       (RM) RSP       (RM) Amount\n8239                                1          16.00          16.00\nSR: 11\" PROWESS HEAVY DUTY SILICONE CEILING G-02\n0555075109147                      3           7.00          21.00\nSR: X'TRASEAL KTV ACETIC SILICONE SA-107\n9744                                1          18.00          18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525                               1          50.00          50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016                                3           0.70           2.10\nSR: PVC VINYL TAPE 1PC X 7YD\nTOT QTY: 9                                      106.10\n(Excluded GST) Sub Total (RM) :                  106.10\nDiscount (RM) :                                    0.00\nTotal GST (RM) :                                   6.37\nRounding (RM) :                                   -0.02\nTotal (RM) :                                     112.45\nCASH                                            112.45\nChange (RM) :                                      0.00\nGST SUMMARY\nTax Code        %       Amount       GST\nSR              6       106.10       6.37\nTotal:                  106.10       6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "009",
+      "recall": 0.9908256880733946,
+      "precision": 0.9908256880733946,
+      "f1": 0.9908256880733946,
+      "latencyMs": 16230,
+      "outputCharacters": 1061,
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati (#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM                                      TOTAL\n2 ChicMcMuffin                               11.00\n1 M Porridge                                  5.60\n1 BM 2HotCakes                               10.00\n1 L Coke\nTakeOut Total (incl GST)                     26.60\nTotal Rounded                                26.60\nCash Tendered                               100.00\nChange                                       73.40\nTOTAL INCLUDES 6% GST                         1.51\nWe'd love to hear your feedback!\nVisit www.mcdfeedback.com.my\nOR\nDownload My MCD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "010",
+      "recall": 0.9125,
+      "precision": 0.9125,
+      "f1": 0.9125,
+      "latencyMs": 21067,
+      "outputCharacters": 907,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67, JLN MERU 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EDG UNICORN TWIN SUPER GLUE USG-99-\n9557360803013          1 X    5.20       5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'58\n230008                  1 X    8.90       8.90 S\nNo. Qtys:                       2 No. Items:       2\nTAX AMT (S) 6%                         RM 13.30\nGST 6%                                  RM 0.80\nTAX AMT (Z) 0%                         RM 0.00\nGST 0%                                  RM 0.00\nTAX AMT (E) 6%                         RM 0.00\nEXC GST 6%                              RM 0.00\nTOTAL                             RM 14.10\nCASH                              RM 20.00\nCHANGE                            RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017 Time : 20:17\nCas.   r : SAM SAM\nWc5 SWR 01 Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "round": 3,
+      "id": "011",
+      "recall": 0.9550561797752809,
+      "precision": 0.9550561797752809,
+      "f1": 0.9550561797752809,
+      "latencyMs": 23395,
+      "outputCharacters": 1224,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) 0137X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 0003945459768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002   TIME: 15:29:00\nITEM                         QTY      U/P        AMOUNT\n                              (RM)       (RM)\n2000160000024                 1       15.00       15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY                         1\nSUB-TOTAL (GST)                         15.00\nDISC                                      0.00\nROUNDING                                  0.00\nTOTAL                                     15.00\nCASH                                      15.00\nCHANGE                                     0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE                         AMOUNT      %       TAX/AMT\nSR                             14.15      6        0.85\nTAX TOTAL:                                      0.85\nGOODS SOLD ARE NOT REFUNDABLE,\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "008",
+      "recall": 0.9142857142857143,
+      "precision": 0.9142857142857143,
+      "f1": 0.9142857142857143,
+      "latencyMs": 13587,
+      "outputCharacters": 899,
+      "text": "PERNIAGAAN ZHENG HUI\nJM0325955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-3864752 FAX: 07-3863793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nRecept # CS00082552\nSalesperson:\nCashier: USER\nDate: 12/02/2018\nTime:08:30:00\nItem Qty (RM) (RM)\nRSP Amount\n8239 GB 1 15.00 15.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-02\n9555075109147 GA 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n1525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X YYD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.45\nCASH : 112.45\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal: 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "009",
+      "recall": 0.981651376146789,
+      "precision": 0.981651376146789,
+      "f1": 0.981651376146789,
+      "latencyMs": 23224,
+      "outputCharacters": 786,
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nVisit www.mcfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "010",
+      "recall": 0.9625,
+      "precision": 0.9625,
+      "f1": 0.9625000000000001,
+      "latencyMs": 50896,
+      "outputCharacters": 583,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'S8\n2290008 1 X 8.90 8.90 S\nNo. Qtys: 2 No. Items: 2\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\nTOTAL RM 14.10\nCASH RM 20.00\nCHANGE RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWS5 SWH 01 Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 1,
+      "id": "011",
+      "recall": 0.9213483146067416,
+      "precision": 0.9318181818181818,
+      "f1": 0.9265536723163842,
+      "latencyMs": 81324,
+      "outputCharacters": 783,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n922737-X\nNO. 17-6, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM\nTEL: 012 - 6651703 FAX: 03 - 33623609\nGST NO: 000994528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:29:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\n* PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "008",
+      "recall": 0.8952380952380953,
+      "precision": 0.9038461538461539,
+      "f1": 0.8995215311004785,
+      "latencyMs": 14031,
+      "outputCharacters": 1386,
+      "text": "PERNIAGAAN ZHENG HUI\nJM0326955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-38627524 FAX: 07-3863793\nGST NO :000800589824\nSIMPLIFIED TAX INVOICE\nCOGIANT ENGINEERING (M) SDN BHD\nReceipt #: CS00082552\nSalesperson:                         Date: 12/02/2018\nCashier: USER                         Time:08:30:00\nItem                            Qty       (RM)       (RM)\n8239                 GB       1        15.00      15.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-02\n9555075109147          GA       3         7.00      21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744                 GB       1        18.00      18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n1525                 GB       1        50.00      50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016                 GA       3         0.70       2.10\nSR: PVC WIRE TAPE 1PC X YYD\nTOT QTY:       9\n(Excluded GST) Sub Total (RM) :       106.10\nDiscount (RM) :                         0.00\nTotal GST (RM) :                        6.37\nRounding (RM) :                        -0.02\nTotal (RM) :                           112.45\nCASH :                                 112.45\nChange (RM) :                            0.00\nGST SUMMARY\nTax Code          %          Amount       GST\nSR                6          106.10       6.37\nTotal:                       106.10       6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "009",
+      "recall": 1,
+      "precision": 1,
+      "f1": 1,
+      "latencyMs": 11952,
+      "outputCharacters": 994,
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM                              TOTAL\n2 ChicMcMuffin                        11.00\n1 M Porridge                           5.60\n1 BM 2HotCakes                        10.00\n1 L Coke\nTakeOut Total (incl GST)              26.60\nTotal Rounded                         26.60\nCash Tendered                        100.00\nChange                                73.40\nTOTAL INCLUDES 6% GST                  1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "010",
+      "recall": 0.9625,
+      "precision": 0.9625,
+      "f1": 0.9625000000000001,
+      "latencyMs": 18938,
+      "outputCharacters": 829,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013          1 X   5.20     5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'S8\n2300008                1 X   8.90     8.90 S\nNo. Qtys:              2 No. Items:     2\nTAX AMT (S) 6%                    RM 13.30\nGST 6%                            RM 0.80\nTAX AMT (Z) 0%                    RM 0.00\nGST 0%                            RM 0.00\nTAX AMT (E) 6%                    RM 0.00\nEXC GST 6%                        RM 0.00\nTOTAL                    RM 14.10\nCASH                     RM 20.00\nCHANGE                   RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017  Time : 20:17\nCas.  r : SAM SAM\nWS5 SWH 01 Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 2,
+      "id": "011",
+      "recall": 0.9438202247191011,
+      "precision": 0.9545454545454546,
+      "f1": 0.9491525423728814,
+      "latencyMs": 23897,
+      "outputCharacters": 1092,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-6, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM.\nTEL: 012 - 6651703 FAX: 03 - 33623609\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:29:00\nITEM                   QTY       U/P      AMOUNT\n                                  (RM)      (RM)\n2000160000024          1        15.00     15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY                    1\nSUB-TOTAL (GST)                  15.00\nDISC                              0.00\nROUNDING                          0.00\nTOTAL                    15.00\nCASH                     15.00\nCHANGE                    0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE              AMOUNT       %    TAX/AMT\nSR                14.15        6      0.85\nTAX TOTAL:                          0.85\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "008",
+      "recall": 0.9047619047619048,
+      "precision": 0.9047619047619048,
+      "f1": 0.9047619047619048,
+      "latencyMs": 12528,
+      "outputCharacters": 1448,
+      "text": "PERNIAGAAN ZHENG HUI\nJM0325955-V\nNO.69 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-3867524 FAX: 07-3863793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt # CS00082552\nSalesperson:                         Date: 12/02/2018\nCashier: USER                         Time: 08:30:00\n(RM)        (RM)\nItem                         Qty       U/Price     Amount\n8239                         GB        1          15.00      15.00\nSR: 11\" PROWESS HOLDING SILICONE GUN G-02\n9555075109147                 GA        3          7.00       21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n97444                        GB        1          18.00      18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\"-5/32\"-1/4\"\n12525                        GB        1          50.00      50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016                         GA        3          0.70       2.10\nSR: PVC WIRE TAPE 1PC X YYD\nTOT QTY:     9\n(Excluded GST) Sub Total (RM) :      106.10\nDiscount (RM) :                       0.00\nTotal GST (RM) :                      6.37\nRounding (RM) :                      -0.02\nTotal (RM) :                        112.45\nCASH :                              112.45\nChange (RM) :                         0.00\nGST SUMMARY\nTax Code          %          Amount          GST\nSR                6          106.10          6.37\nTotal :                       106.10          6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "009",
+      "recall": 0.981651376146789,
+      "precision": 0.981651376146789,
+      "f1": 0.981651376146789,
+      "latencyMs": 15406,
+      "outputCharacters": 957,
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM                         TOTAL\n2 ChicMcMuffin                    11.00\n1 M Porridge                       5.60\n1 BM 2HotCakes                    10.00\n1 L Coke\nTakeOut Total (incl GST)          26.60\nTotal Rounded                     26.60\nCash Tendered                    100.00\nChange                           73.40\nTOTAL INCLUDES 6% GST              1.51\nWe'd love to hear your feedback!\nVisit www.mcfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "010",
+      "recall": 0.9625,
+      "precision": 0.9625,
+      "f1": 0.9625000000000001,
+      "latencyMs": 21911,
+      "outputCharacters": 827,
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013          1 X    5.20      5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'S8\n2200008                1 X    8.90      8.90 S\nNo. Qtys:             2 No. Items:     2\nTAX AMT (S) 6%                    RM 13.30\nGST 6%                             RM 0.80\nTAX AMT (Z) 0%                    RM 0.00\nGST 0%                             RM 0.00\nTAX AMT (E) 6%                    RM 0.00\nEXC GST 6%                         RM 0.00\nTOTAL                 RM 14.10\nCASH                  RM 20.00\nCHANGE                RM 5.90\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017  Time : 20:17\nCas.  r : SAM SAM\nWS5 SWH 01  Inv:R000721136"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "round": 3,
+      "id": "011",
+      "recall": 0.9438202247191011,
+      "precision": 0.9545454545454546,
+      "f1": 0.9491525423728814,
+      "latencyMs": 27715,
+      "outputCharacters": 1059,
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n922737-X\nNO. 17-6, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM.\nTEL: 012 - 6651703 FAX: 03 - 33623609\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002   TIME: 15:28:00\nITEM                 QTY       U/P      AMOUNT\n                              (RM)     (RM)\n2000160000024          1       15.00    15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY                 1\nSUB-TOTAL (GST)          15.00\nDISC                       0.00\nROUNDING                   0.00\nTOTAL                     15.00\nCASH                      15.00\nCHANGE                     0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE             AMOUNT      %     TAX/AMT\nSR               14.15       6      0.85\nTAX TOTAL:                         0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    }
+  ],
+  "deepSeekRuns": [
+    {
+      "id": "008",
+      "round": 1,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 92,
+      "groundTruthWords": 105,
+      "recall": 0.8761904761904762,
+      "latencyMs": 4516.449900000007,
+      "usage": {
+        "prompt_tokens": 431,
+        "completion_tokens": 468,
+        "total_tokens": 899,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 431
+      },
+      "text": "A020245\nPERNIAGAAN ZHENG HUI\nJM0228555-V\nNO.50 JALAN PERMAS 9/5,\nBANDAR BARU PERMAS JAYA,\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000860589824\nSIMPLIFIED TAX INVOICE\nGOGIGANT ENGINEERING (M) SDN BHD.\nReceipt#: C500002552\nSalesperson:\nCashier: USER\nDate: 12/02/2018\nTime: 08:30:30\nItem Qty (RM) RCP (RM) Amount (RM)\n8239 6/8 1 18.00 18.00\nSR 11\" PROWNESS H/DUTY SILICONE GUN G-D2\n8550075/09147 6/8 3 7.00 21.00\nSR XTRASEAL K1V ACETIC SILICONE SA-107\n9744 6/8 1 18.00 18.00\nSR CENTRAL PUNCH SET 3PCS - 1/4\", 5/32\", 1/4\"\n12525 6/8 1 50.00 50.00\nSR 24\" MARKSMAN PIPE WRENCH\n2016 6/8 3 0.70 2.10\nSR PVC WIRE TAPE 18PC X 7YD\nTOT QTY : 9 109.10\n(Excluded GST) Sub-Total (RM): 108.10\nDiscount (RM): 0.00\nTotal GST (RM): 6.37\nRounding (RM): -0.02\nTotal (RM): 112.46\nCASH : 112.48\nChange (RM): 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal: 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU"
+    },
+    {
+      "id": "008",
+      "round": 1,
+      "strategy": "v1-uniform",
+      "imageCount": 7,
+      "coverageTiles": 6,
+      "detailTiles": 0,
+      "matchedWords": 98,
+      "groundTruthWords": 105,
+      "recall": 0.9333333333333333,
+      "latencyMs": 4261.890799999994,
+      "usage": {
+        "prompt_tokens": 2607,
+        "completion_tokens": 459,
+        "total_tokens": 3066,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1839
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO 59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: X'TRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total(RM) : 106.10\nDiscount(RM) : 0.00\nTotal GST(RM) : 6.37\nRounding(RM) : -0.02\nTotal(RM) : 112.46\nCASH : 112.46\nChange(RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "id": "008",
+      "round": 1,
+      "strategy": "v2-adaptive",
+      "imageCount": 9,
+      "coverageTiles": 6,
+      "detailTiles": 2,
+      "matchedWords": 99,
+      "groundTruthWords": 105,
+      "recall": 0.9428571428571428,
+      "latencyMs": 4493.299900000013,
+      "usage": {
+        "prompt_tokens": 3055,
+        "completion_tokens": 458,
+        "total_tokens": 3513,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3055
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO.59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: X'TRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.45\nCASH : 112.45\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE\nTHANK YOU"
+    },
+    {
+      "id": "008",
+      "round": 1,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 8,
+      "coverageTiles": 6,
+      "detailTiles": 1,
+      "matchedWords": 100,
+      "groundTruthWords": 105,
+      "recall": 0.9523809523809523,
+      "latencyMs": 4081.4073999999964,
+      "usage": {
+        "prompt_tokens": 2831,
+        "completion_tokens": 457,
+        "total_tokens": 3288,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 2063
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO.59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total(RM) : 106.10\nDiscount(RM) : 0.00\nTotal GST(RM) : 6.37\nRounding(RM) : -0.02\nTotal(RM) : 112.46\nCASH : 112.46\nChange(RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE\nTHANK YOU"
+    },
+    {
+      "id": "009",
+      "round": 1,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 3996.121800000008,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 303,
+        "total_tokens": 742,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 439
+      },
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 1,
+      "strategy": "v1-uniform",
+      "imageCount": 3,
+      "coverageTiles": 2,
+      "detailTiles": 0,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 5215.573800000013,
+      "usage": {
+        "prompt_tokens": 955,
+        "completion_tokens": 311,
+        "total_tokens": 1266,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 699
+      },
+      "text": "1950\nIC\npasar\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 1,
+      "strategy": "v2-adaptive",
+      "imageCount": 5,
+      "coverageTiles": 2,
+      "detailTiles": 2,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 6170.871800000023,
+      "usage": {
+        "prompt_tokens": 1403,
+        "completion_tokens": 311,
+        "total_tokens": 1714,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 1147
+      },
+      "text": "1950\nIC\nper\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39, 47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 1,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 4,
+      "coverageTiles": 2,
+      "detailTiles": 1,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 6225.449500000002,
+      "usage": {
+        "prompt_tokens": 1179,
+        "completion_tokens": 311,
+        "total_tokens": 1490,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 923
+      },
+      "text": "1950\nIC\npasar\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "010",
+      "round": 1,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 74,
+      "groundTruthWords": 80,
+      "recall": 0.925,
+      "latencyMs": 4356.054000000004,
+      "usage": {
+        "prompt_tokens": 415,
+        "completion_tokens": 323,
+        "total_tokens": 738,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 415
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213981\nGST NO: 00100628896\n\nTAX INVOICE\n==============================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n2P0008 1 X 8.90 8.90 S\n------------------------------\nNo. Qtys: 2 No. Items: 2\n------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n------------------------------\nCHANGE RM 5.90\n------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFri~v, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 1,
+      "strategy": "v1-uniform",
+      "imageCount": 7,
+      "coverageTiles": 6,
+      "detailTiles": 0,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 19804.336500000034,
+      "usage": {
+        "prompt_tokens": 2547,
+        "completion_tokens": 316,
+        "total_tokens": 2863,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 371
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 1,
+      "strategy": "v2-adaptive",
+      "imageCount": 9,
+      "coverageTiles": 6,
+      "detailTiles": 2,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 20477.073200000043,
+      "usage": {
+        "prompt_tokens": 2995,
+        "completion_tokens": 320,
+        "total_tokens": 3315,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 435
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n--------------------------------\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n--------------------------------\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 1,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 8,
+      "coverageTiles": 6,
+      "detailTiles": 1,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 22525.894,
+      "usage": {
+        "prompt_tokens": 2771,
+        "completion_tokens": 316,
+        "total_tokens": 3087,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 211
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "011",
+      "round": 1,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 86,
+      "groundTruthWords": 89,
+      "recall": 0.9662921348314607,
+      "latencyMs": 5687.015199999994,
+      "usage": {
+        "prompt_tokens": 411,
+        "completion_tokens": 403,
+        "total_tokens": 814,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 411
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394529768\n\nSIMPLIFIED TAX INVOICE\n\n----------------------------------------\nCASH\n----------------------------------------\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\n----------------------------------------\nITEM       QTY   U/P     AMOUNT\n                  (RM)    (RM)\n2000160000024  1  15.00   15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\n----------------------------------------\nTOTAL QUANTITY      1\n\n              SUB-TOTAL (GST)   15.00\n              DISC               0.00\n              ROUNDING           0.00\nTOTAL                         15.00\nCASH                          15.00\nCHANGE                         0.00\n\n*GST @ 6% INCLUDED IN TOTAL\n\n----------------------------------------\n             GST SUMMARY\n----------------------------------------\nCODE     AMOUNT   %    TAX/AMT\n----------------------------------------\nSR       14.15    6    0.85\n----------------------------------------\n              TAX TOTAL:    0.85\n\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 1,
+      "strategy": "v1-uniform",
+      "imageCount": 5,
+      "coverageTiles": 4,
+      "detailTiles": 0,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 13371.112200000032,
+      "usage": {
+        "prompt_tokens": 1651,
+        "completion_tokens": 367,
+        "total_tokens": 2018,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 1395
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 1,
+      "strategy": "v2-adaptive",
+      "imageCount": 7,
+      "coverageTiles": 4,
+      "detailTiles": 2,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 24089.27739999999,
+      "usage": {
+        "prompt_tokens": 2099,
+        "completion_tokens": 367,
+        "total_tokens": 2466,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2099
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 1,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 6,
+      "coverageTiles": 4,
+      "detailTiles": 1,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 16230.47400000001,
+      "usage": {
+        "prompt_tokens": 1875,
+        "completion_tokens": 367,
+        "total_tokens": 2242,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 1619
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "008",
+      "round": 2,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 93,
+      "groundTruthWords": 105,
+      "recall": 0.8857142857142857,
+      "latencyMs": 4836.492800000007,
+      "usage": {
+        "prompt_tokens": 431,
+        "completion_tokens": 464,
+        "total_tokens": 895,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 431
+      },
+      "text": "A020245\nPERNIAGAAN ZHENG HUI\nJM0228555-V\nNO.50 JALAN PERMAS 9/5,\nBANDAR BARU PERMAS JAYA,\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 00080589824\nSIMPLIFIED TAX INVOICE\nGOGIGANT ENGINEERING (M) SDN BHD\nReceipt#: C500002552\nSalesperson:\nCashier: USER\nDate: 12/02/2018\nTime: 08:30:30\nItem Qty (RM) RCP (RM) Amount\n8239 6/8 1 18.00 18.00\nSR 11\" PROWNESS H/DUTY SILICONE GUN G-D2\n8550075/09147 6/8 3 7.00 21.00\nSR XTRASEAL K1V ACETIC SILICONE SA-107\n9744 6/8 1 18.00 18.00\nSR CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 6/8 1 50.00 50.00\nSR 24\" MARKSMAN PIPE WRENCH\n2016 6/8 3 0.70 2.10\nSR PVC WIRE TAPE 18PC X 7YD\nTOT QTY: 9 109.10\n(Excluded GST) Sub-Total (RM): 109.10\nDiscount (RM): 0.00\nTotal GST (RM): 6.37\nRounding (RM): -0.02\nTotal (RM): 112.45\nCASH: 112.45\nChange (RM): 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal: 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU"
+    },
+    {
+      "id": "008",
+      "round": 2,
+      "strategy": "v1-uniform",
+      "imageCount": 7,
+      "coverageTiles": 6,
+      "detailTiles": 0,
+      "matchedWords": 98,
+      "groundTruthWords": 105,
+      "recall": 0.9333333333333333,
+      "latencyMs": 4023.510099999956,
+      "usage": {
+        "prompt_tokens": 2607,
+        "completion_tokens": 459,
+        "total_tokens": 3066,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1839
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO.59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: X'TRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total(RM) : 106.10\nDiscount(RM) : 0.00\nTotal GST(RM) : 6.37\nRounding(RM) : -0.02\nTotal(RM) : 112.46\nCASH : 112.46\nChange(RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "id": "008",
+      "round": 2,
+      "strategy": "v2-adaptive",
+      "imageCount": 9,
+      "coverageTiles": 6,
+      "detailTiles": 2,
+      "matchedWords": 100,
+      "groundTruthWords": 105,
+      "recall": 0.9523809523809523,
+      "latencyMs": 4284.855899999995,
+      "usage": {
+        "prompt_tokens": 3055,
+        "completion_tokens": 457,
+        "total_tokens": 3512,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3055
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO.59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.45\nCASH : 112.45\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE\nTHANK YOU"
+    },
+    {
+      "id": "008",
+      "round": 2,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 8,
+      "coverageTiles": 6,
+      "detailTiles": 1,
+      "matchedWords": 100,
+      "groundTruthWords": 105,
+      "recall": 0.9523809523809523,
+      "latencyMs": 4341.8573,
+      "usage": {
+        "prompt_tokens": 2831,
+        "completion_tokens": 457,
+        "total_tokens": 3288,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 2063
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO 59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.46\nCASH : 112.46\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE\nTHANK YOU"
+    },
+    {
+      "id": "009",
+      "round": 2,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 4313.364800000003,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 311,
+        "total_tokens": 750,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 439
+      },
+      "text": "1950\nIC\npura\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 2,
+      "strategy": "v1-uniform",
+      "imageCount": 3,
+      "coverageTiles": 2,
+      "detailTiles": 0,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 7139.556199999992,
+      "usage": {
+        "prompt_tokens": 955,
+        "completion_tokens": 311,
+        "total_tokens": 1266,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 699
+      },
+      "text": "1950\nIC\npasar\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 2,
+      "strategy": "v2-adaptive",
+      "imageCount": 5,
+      "coverageTiles": 2,
+      "detailTiles": 2,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 7055.762500000012,
+      "usage": {
+        "prompt_tokens": 1403,
+        "completion_tokens": 311,
+        "total_tokens": 1714,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 1147
+      },
+      "text": "1950\nIC\nper\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39, 47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 2,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 4,
+      "coverageTiles": 2,
+      "detailTiles": 1,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 5699.942900000009,
+      "usage": {
+        "prompt_tokens": 1179,
+        "completion_tokens": 311,
+        "total_tokens": 1490,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 923
+      },
+      "text": "1950\nIC\npasar\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "010",
+      "round": 2,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 74,
+      "groundTruthWords": 80,
+      "recall": 0.925,
+      "latencyMs": 4299.907999999996,
+      "usage": {
+        "prompt_tokens": 415,
+        "completion_tokens": 323,
+        "total_tokens": 738,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 415
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213981\nGST NO: 00100628896\n\nTAX INVOICE\n==============================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n2?0008 1 X 8.90 8.90 S\n------------------------------\nNo. Qtys: 2 No. Items: 2\n------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n------------------------------\nCHANGE RM 5.90\n------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFri??v, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 2,
+      "strategy": "v1-uniform",
+      "imageCount": 7,
+      "coverageTiles": 6,
+      "detailTiles": 0,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 21746.251099999994,
+      "usage": {
+        "prompt_tokens": 2547,
+        "completion_tokens": 316,
+        "total_tokens": 2863,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2547
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 2,
+      "strategy": "v2-adaptive",
+      "imageCount": 9,
+      "coverageTiles": 6,
+      "detailTiles": 2,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 20406.653700000003,
+      "usage": {
+        "prompt_tokens": 2995,
+        "completion_tokens": 316,
+        "total_tokens": 3311,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2995
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 2,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 8,
+      "coverageTiles": 6,
+      "detailTiles": 1,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 22542.360199999996,
+      "usage": {
+        "prompt_tokens": 2771,
+        "completion_tokens": 316,
+        "total_tokens": 3087,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 211
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "011",
+      "round": 2,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 86,
+      "groundTruthWords": 89,
+      "recall": 0.9662921348314607,
+      "latencyMs": 5528.087099999975,
+      "usage": {
+        "prompt_tokens": 411,
+        "completion_tokens": 398,
+        "total_tokens": 809,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 411
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394529768\nSIMPLIFIED TAX INVOICE\nCASH\n------------------------------------\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\n------------------------------------\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\n------------------------------------\nTOTAL QUANTITY 1\n------------------------------------\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n------------------------------------\n*GST @ 6% INCLUDED IN TOTAL\n------------------------------------\nGST SUMMARY\n------------------------------------\nCODE AMOUNT % TAX/AMT\n------------------------------------\nSR 14.15 6 0.85\n------------------------------------\nTAX TOTAL: 0.85\n------------------------------------\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 2,
+      "strategy": "v1-uniform",
+      "imageCount": 5,
+      "coverageTiles": 4,
+      "detailTiles": 0,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 12622.085499999986,
+      "usage": {
+        "prompt_tokens": 1651,
+        "completion_tokens": 367,
+        "total_tokens": 2018,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 1395
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 2,
+      "strategy": "v2-adaptive",
+      "imageCount": 7,
+      "coverageTiles": 4,
+      "detailTiles": 2,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 14811.970399999991,
+      "usage": {
+        "prompt_tokens": 2099,
+        "completion_tokens": 367,
+        "total_tokens": 2466,
+        "prompt_tokens_details": {
+          "cached_tokens": 1664
+        },
+        "prompt_cache_hit_tokens": 1664,
+        "prompt_cache_miss_tokens": 435
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 2,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 6,
+      "coverageTiles": 4,
+      "detailTiles": 1,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 19910.496400000004,
+      "usage": {
+        "prompt_tokens": 1875,
+        "completion_tokens": 367,
+        "total_tokens": 2242,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 1619
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "008",
+      "round": 3,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 94,
+      "groundTruthWords": 105,
+      "recall": 0.8952380952380953,
+      "latencyMs": 4681.117700000001,
+      "usage": {
+        "prompt_tokens": 431,
+        "completion_tokens": 468,
+        "total_tokens": 899,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 431
+      },
+      "text": "A020245\nPERNIAGAAN ZHENG HUI\nJM0228555-V\nNO.50 JALAN PERMAS 9/5,\nBANDAR BARU PERMAS JAYA,\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 00080589824\nSIMPLIFIED TAX INVOICE\nGOGIGANT ENGINEERING (M) SDN BHD\nReceipt#: C500002552\nSalesperson:\nCashier: USER\nDate: 12/02/2018\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount (RM)\n8239 6/8 1 18.00 18.00\nSR 11\" PROWNESS H/DUTY SILICONE GUN G-D2\n8550075/09147 6/8 3 7.00 21.00\nSR XTRASEAL K1V ACETIC SILICONE SA-107\n9744 6/8 1 18.00 18.00\nSR CENTRAL PUNCH SET 3PCS - 1/4\", 5/32\", 1/4\"\n12525 6/8 1 50.00 50.00\nSR 24\" MARKSMAN PIPE WRENCH\n2016 6/8 3 0.70 2.10\nSR PVC WIRE TAPE 18PC X 7YD\nTOT QTY: 9 109.10\n(Excluded GST) Sub-Total (RM): 108.10\nDiscount (RM): 0.00\nTotal GST (RM): 6.37\nRounding (RM): -0.02\nTotal (RM): 112.45\nCASH: 112.45\nChange (RM): 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal: 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU"
+    },
+    {
+      "id": "008",
+      "round": 3,
+      "strategy": "v1-uniform",
+      "imageCount": 7,
+      "coverageTiles": 6,
+      "detailTiles": 0,
+      "matchedWords": 98,
+      "groundTruthWords": 105,
+      "recall": 0.9333333333333333,
+      "latencyMs": 3995.194999999978,
+      "usage": {
+        "prompt_tokens": 2607,
+        "completion_tokens": 459,
+        "total_tokens": 3066,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1839
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO.59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: X'TRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total(RM) : 106.10\nDiscount(RM) : 0.00\nTotal GST(RM) : 6.37\nRounding(RM) : -0.02\nTotal(RM) : 112.46\nCASH : 112.46\nChange(RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU."
+    },
+    {
+      "id": "008",
+      "round": 3,
+      "strategy": "v2-adaptive",
+      "imageCount": 9,
+      "coverageTiles": 6,
+      "detailTiles": 2,
+      "matchedWords": 100,
+      "groundTruthWords": 105,
+      "recall": 0.9523809523809523,
+      "latencyMs": 4186.631900000008,
+      "usage": {
+        "prompt_tokens": 3055,
+        "completion_tokens": 457,
+        "total_tokens": 3512,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 2287
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO 59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81750 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.45\nCASH : 112.45\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE\nTHANK YOU"
+    },
+    {
+      "id": "008",
+      "round": 3,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 8,
+      "coverageTiles": 6,
+      "detailTiles": 1,
+      "matchedWords": 100,
+      "groundTruthWords": 105,
+      "recall": 0.9523809523809523,
+      "latencyMs": 4175.239100000006,
+      "usage": {
+        "prompt_tokens": 2831,
+        "completion_tokens": 457,
+        "total_tokens": 3288,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 2063
+      },
+      "text": "A02045\nPERNIAGAAN ZHENG HUI\nJM0328956-V\nNO.59 JALAN PERMAS 9/5\nBANDAR BARU PERMAS JAYA\n81760 JOHOR BAHRU\nTEL: 07-386 7524 FAX: 07-386 3793\nGST NO: 000800589824\nSIMPLIFIED TAX INVOICE\nGOGIANT ENGINEERING (M) SDN BHD\nReceipt#: CS00082862\nSalesperson:\nDate: 12/02/2018\nCashier: USER\nTime: 08:30:30\nItem Qty (RM) RSP (RM) Amount\n8239 GB 1 16.00 16.00\nSR: 11\" PROWESS H/DUTY SILICONE GUN G-D2\n9550075109147 GA 3 7.00 21.00\nSR: XTRASEAL RTV ACETIC SILICONE SA-107\n9744 GB 1 18.00 18.00\nSR: CENTRAL PUNCH SET 3PCS - 1/4\",5/32\",1/4\"\n12525 GB 1 50.00 50.00\nSR: 24\" MARKSMAN PIPE WRENCH\n2016 GA 3 0.70 2.10\nSR: PVC WIRE TAPE 1PC X 7YD\nTOT QTY: 9 106.10\n(Excluded GST) Sub Total (RM) : 106.10\nDiscount (RM) : 0.00\nTotal GST (RM) : 6.37\nRounding (RM) : -0.02\nTotal (RM) : 112.46\nCASH : 112.46\nChange (RM) : 0.00\nGST SUMMARY\nTax Code % Amount GST\nSR 6 106.10 6.37\nTotal : 106.10 6.37\nGOODS SOLD ARE NOT RETURNABLE\nTHANK YOU"
+    },
+    {
+      "id": "009",
+      "round": 3,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 3399.6456999999937,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 303,
+        "total_tokens": 742,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 439
+      },
+      "text": "1950\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 3,
+      "strategy": "v1-uniform",
+      "imageCount": 3,
+      "coverageTiles": 2,
+      "detailTiles": 0,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 6268.1480999999985,
+      "usage": {
+        "prompt_tokens": 955,
+        "completion_tokens": 311,
+        "total_tokens": 1266,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 955
+      },
+      "text": "1950\nIC\npasar\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 3,
+      "strategy": "v2-adaptive",
+      "imageCount": 5,
+      "coverageTiles": 2,
+      "detailTiles": 2,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 7259.158699999998,
+      "usage": {
+        "prompt_tokens": 1403,
+        "completion_tokens": 311,
+        "total_tokens": 1714,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1403
+      },
+      "text": "1950\nIC\nper\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39, 47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati (#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "009",
+      "round": 3,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 4,
+      "coverageTiles": 2,
+      "detailTiles": 1,
+      "matchedWords": 109,
+      "groundTruthWords": 109,
+      "recall": 1,
+      "latencyMs": 5971.0288,
+      "usage": {
+        "prompt_tokens": 1179,
+        "completion_tokens": 311,
+        "total_tokens": 1490,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 923
+      },
+      "text": "1950\nIC\npasar\n0598\nGerbang Alaf Restaurants Sdn Bhd\n(65351-M)\nformerly known as\nGolden Arches Restaurants Sdn Bhd\nLicensee of McDonald's\nLevel 6, Bangunan TH, Damansara Uptown3\nNo.3, Jalan SS21/39,47400 Petaling Jaya\nSelangor\n(GST ID No: 000504664064)\nMcDonald's BHP Taman Melawati(#328)\nTel No. 03-4162-2318\nTAX INVOICE\nMFY Side 1\nINV# 003281900229170\nORD #50 -REG #19- 18/01/2018 10:27:03\nQTY ITEM TOTAL\n2 ChicMcMuffin 11.00\n1 M Porridge 5.60\n1 BM 2HotCakes 10.00\n1 L Coke\nTakeOut Total (incl GST) 26.60\nTotal Rounded 26.60\nCash Tendered 100.00\nChange 73.40\nTOTAL INCLUDES 6% GST 1.51\nWe'd love to hear your feedback!\nsit www.mcdfeedback.com.my\nOR\nDownload My McD Feedback from\nGoogle Play/App Store\nto share your experience\nThank You and Please Come Again.\nCustomer Service Hotline : 03-2726-5600"
+    },
+    {
+      "id": "010",
+      "round": 3,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 74,
+      "groundTruthWords": 80,
+      "recall": 0.925,
+      "latencyMs": 5162.867499999993,
+      "usage": {
+        "prompt_tokens": 415,
+        "completion_tokens": 322,
+        "total_tokens": 737,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 415
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213981\nGST NO: 00100628896\n\nTAX INVOICE\n==============================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n2?0008 1 X 8.90 8.90 S\n------------------------------\nNo. Qtys: 2 No. Items: 2\n------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n------------------------------\nCHANGE RM 5.90\n------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFri??, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 3,
+      "strategy": "v1-uniform",
+      "imageCount": 7,
+      "coverageTiles": 6,
+      "detailTiles": 0,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 17774.66769999999,
+      "usage": {
+        "prompt_tokens": 2547,
+        "completion_tokens": 320,
+        "total_tokens": 2867,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2547
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n--------------------------------\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n--------------------------------\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 3,
+      "strategy": "v2-adaptive",
+      "imageCount": 9,
+      "coverageTiles": 6,
+      "detailTiles": 2,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 26756.100300000006,
+      "usage": {
+        "prompt_tokens": 2995,
+        "completion_tokens": 320,
+        "total_tokens": 3315,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2995
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n--------------------------------\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n--------------------------------\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "010",
+      "round": 3,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 8,
+      "coverageTiles": 6,
+      "detailTiles": 1,
+      "matchedWords": 78,
+      "groundTruthWords": 80,
+      "recall": 0.975,
+      "latencyMs": 22418.2794,
+      "usage": {
+        "prompt_tokens": 2771,
+        "completion_tokens": 316,
+        "total_tokens": 3087,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 211
+      },
+      "text": "SAM SAM TRADING CO\n(742016-W)\n67,JLN MEWAH 25/63 TMN SRI MUDA,\n40400 SHAH ALAM.\nTEL/FAX : 03-51213881\nGST NO: 001006288896\n\nTAX INVOICE\n================================\nHE EOG UNICORN TWIN SUPER GLUE USG-99-\n9557368063013 1 X 5.20 5.20 S\nSS EZL A4 CYBER MIX COLOR PAPER 100'SB\n22\"008 1 X 8.90 8.90 S\n\nNo. Qtys: 2 No. Items: 2\n--------------------------------\nTAX AMT (S) 6% RM 13.30\nGST 6% RM 0.80\nTAX AMT (Z) 0% RM 0.00\nGST 0% RM 0.00\nTAX AMT (E) 6% RM 0.00\nEXC GST 6% RM 0.00\n--------------------------------\nTOTAL RM 14.10\nCASH RM 20.00\n\nCHANGE RM 5.90\n--------------------------------\nTHANK YOU FOR SHOPPING\nGOODS SOLD ARE NOT RETURNABLE.\n\nFriday, 29-12-2017 Time : 20:17\nCas. r : SAM SAM\nWc5 SWH 01 Inv:R000721136"
+    },
+    {
+      "id": "011",
+      "round": 3,
+      "strategy": "direct",
+      "imageCount": 1,
+      "coverageTiles": 0,
+      "detailTiles": 0,
+      "matchedWords": 86,
+      "groundTruthWords": 89,
+      "recall": 0.9662921348314607,
+      "latencyMs": 7132.9905,
+      "usage": {
+        "prompt_tokens": 411,
+        "completion_tokens": 398,
+        "total_tokens": 809,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 411
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394529768\nSIMPLIFIED TAX INVOICE\nCASH\n------------------------------------\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\n------------------------------------\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\n------------------------------------\nTOTAL QUANTITY 1\n------------------------------------\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n------------------------------------\n*GST @ 6% INCLUDED IN TOTAL\n------------------------------------\nGST SUMMARY\n------------------------------------\nCODE AMOUNT % TAX/AMT\n------------------------------------\nSR 14.15 6 0.85\n------------------------------------\nTAX TOTAL: 0.85\n------------------------------------\nGOODS SOLD ARE NOT RETURNABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 3,
+      "strategy": "v1-uniform",
+      "imageCount": 5,
+      "coverageTiles": 4,
+      "detailTiles": 0,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 13386.828500000003,
+      "usage": {
+        "prompt_tokens": 1651,
+        "completion_tokens": 367,
+        "total_tokens": 2018,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1651
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 3,
+      "strategy": "v2-adaptive",
+      "imageCount": 7,
+      "coverageTiles": 4,
+      "detailTiles": 2,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 18523.908799999997,
+      "usage": {
+        "prompt_tokens": 2099,
+        "completion_tokens": 367,
+        "total_tokens": 2466,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2099
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    },
+    {
+      "id": "011",
+      "round": 3,
+      "strategy": "v2-adaptive-lite",
+      "imageCount": 6,
+      "coverageTiles": 4,
+      "detailTiles": 1,
+      "matchedWords": 87,
+      "groundTruthWords": 89,
+      "recall": 0.9775280898876404,
+      "latencyMs": 19892.77040000001,
+      "usage": {
+        "prompt_tokens": 1875,
+        "completion_tokens": 367,
+        "total_tokens": 2242,
+        "prompt_tokens_details": {
+          "cached_tokens": 1664
+        },
+        "prompt_cache_hit_tokens": 1664,
+        "prompt_cache_miss_tokens": 211
+      },
+      "text": "AIK HUAT HARDWARE\nENTERPRISE (SETIA\nALAM) SDN BHD\n822737-X\nNO. 17-G, JALAN SETIA INDAH\n(X) U13/X, SETIA ALAM,\nSEKSYEN U13, 40170 SHAH ALAM,\nTEL: 012 - 6651783 FAX: 03 - 33623608\nGST NO: 000394528768\nSIMPLIFIED TAX INVOICE\nCASH\nRECEIPT #: CSP0393921 DATE: 15/06/2017\nSALESPERSON : AH002 TIME: 15:28:00\nITEM QTY U/P AMOUNT\n(RM) (RM)\n2000160000024 1 15.00 15.00 S\n20\" 1.6KG X 500MM BIG STRETCH FILM ???\nTOTAL QUANTITY 1\nSUB-TOTAL (GST) 15.00\nDISC 0.00\nROUNDING 0.00\nTOTAL 15.00\nCASH 15.00\nCHANGE 0.00\n*GST @ 6% INCLUDED IN TOTAL\nGST SUMMARY\nCODE AMOUNT % TAX/AMT\nSR 14.15 6 0.85\nTAX TOTAL: 0.85\nGOODS SOLD ARE NOT REFUNDABLE.\nTHANK YOU FOR CHOOSING US.\nPLEASE PROVIDE ORIGINAL BILL FOR GOODS\nEXCHANGE WITHIN 1 WEEK FROM TRANSACTION\nGOODS MUST BE IN ORIGINAL STATE TO BE\nENTITLED FOR EXCHANGE."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+node_modules/
+work/
+outputs/
+*.tgz
+*.log
+.env
+.env.*
+coverage/
+dist/

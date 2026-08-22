@@ -1,0 +1,13 @@
+- insert:
+    - id: vision-tiler
+      name: '@local/dsh-vision-tiler'
+      config:
+        targetTilePixels: 589824
+        minOverlapPixels: 64
+        maxTotalTiles: 256
+        maxImagesPerBatch: 20
+        includeOverview: true
+        overviewMaxEdge: 800
+        defaultStrategy: adaptive
+        detailCropCount: 1
+        detailCropSide: 512
