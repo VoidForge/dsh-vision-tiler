@@ -44,13 +44,27 @@ Git 依赖会执行本仓库的 `prepare` 构建脚本。pnpm 10 及以上版本
 npm install
 npm run build
 npm pack
-dsh plugin --profile web add .\local-dsh-vision-tiler-0.2.0.tgz
+dsh plugin --profile web add .\local-dsh-vision-tiler-0.2.2.tgz
 dsh --profile web --dump-config
 ```
 
 压缩包包含预编译的 `lib/`，适合不希望在 DSH 安装阶段构建源码的环境。
 
 ## 使用
+
+### 选择真正的视觉模型
+
+DeepSeek Harness 默认的 `deepseek-v4-flash` 路由只声明文本输入。要让模型实际看到 `segment_image` 返回的附件，需要把 profile 的默认模型切换为官方视觉实验模型：
+
+```yaml
+- id: agent-default-model
+  name: '@deepseek-ai/dsh-agent-default-model'
+  config:
+    provider: deepseek-official
+    model: deepseek-v4-flash-vision-exp
+```
+
+把这段配置写入对应 profile 的 `cordis.patch.yml`。如果仍使用纯文本模型，几何分块可以成功，但 Harness 会省略模型不支持的图片附件。
 
 让 DSH 调用 `segment_image`，从第 0 批开始读取；如果返回剩余批次，再逐批继续：
 
@@ -97,6 +111,10 @@ npm test
 ```
 
 测试覆盖自适应切缝、完整覆盖审计、批次切分、工具输出和渲染行为。数据集、API 密钥和本地实验缓存不会提交到仓库。
+
+### Windows 实测说明
+
+本项目在 Windows、Node 22.23.2、DSH 0.1.1-rc.2 上完成了端到端验证。该版本 DSH 自带的 `@deepseek-ai/dsh-attachment-local` 在测试机加载 `sharp 0.35.3` 时出现 `ERR_DLOPEN_FAILED`；独立测试运行时将这项 DSH 传递依赖固定为 `sharp 0.34.5` 后可正常启动。这是 DSH 附件模块的 Windows 二进制兼容问题，不是 `segment_image` 的几何分块错误；上游修复后应移除该临时覆盖。
 
 ## 边界与限制
 

@@ -93,7 +93,7 @@ function renderResult(value: JsonValue): ContentBlock[] {
 export const name = 'dsh-vision-tiler';
 export const inject = ['tools', 'attachments'];
 
-export default function apply(ctx: Context, config: Config = {}): void {
+export function apply(ctx: Context, config: Config = {}): void {
   const configuredBatchSize = config.maxImagesPerBatch ?? 20;
   const maxImagesPerBatch = Math.min(
     configuredBatchSize,
@@ -161,7 +161,7 @@ export default function apply(ctx: Context, config: Config = {}): void {
         kind: image.kind,
         name: image.name,
         attachment: refs[index],
-        tile: image.tile,
+        ...(image.tile === undefined ? {} : { tile: image.tile }),
       }));
       const result: SegmentImageResult = {
         imageSetId: prepared.imageSetId,

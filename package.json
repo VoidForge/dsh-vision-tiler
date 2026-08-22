@@ -1,6 +1,6 @@
 {
   "name": "@local/dsh-vision-tiler",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "description": "Loss-aware image tiling plugin for DeepSeek Harness",
   "type": "module",

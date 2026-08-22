@@ -14,5 +14,5 @@ export interface Config {
 }
 export declare const name = "dsh-vision-tiler";
 export declare const inject: string[];
-export default function apply(ctx: Context, config?: Config): void;
+export declare function apply(ctx: Context, config?: Config): void;
 //# sourceMappingURL=index.d.ts.map

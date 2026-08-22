@@ -4,7 +4,8 @@ import { mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import applyPlugin from '../lib/index.js';
+import { isJsonValue } from '@deepseek-ai/dsh-session';
+import { apply as applyPlugin } from '../lib/index.js';
 import { auditCoverage, planTiles, prepareImageBatch } from '../lib/core/index.js';
 
 test('planner covers every source pixel and overlaps internal seams', () => {
@@ -127,6 +128,7 @@ test('DSH plugin registers a tool that publishes image attachment blocks', async
     deferContext() {},
   });
   const blocks = definition.output.render(args, value);
+  assert.equal(isJsonValue(value), true);
   assert.equal(value.plan.coverageRatio, 1);
   assert.equal(value.plan.uncoveredPixels, 0);
   assert.ok(blocks.some((block) => block.type === 'image'));
