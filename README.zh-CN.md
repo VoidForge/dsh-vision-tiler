@@ -22,20 +22,14 @@ DeepSeek 文档说明：大图进入模型前会缩放，每张图片最多消�
 
 要求：DeepSeek Harness、支持图片输入的 DSH 模型配置，以及 Node.js 22 或更高版本。
 
-从 npm 安装：
-
-```shell
-dsh plugin --profile web add dsh-vision-tiler
-dsh --profile web --dump-config
-```
-
 固定到 GitHub 发布版本：
 
 ```shell
 dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek#v0.2.3
+dsh --profile web --dump-config
 ```
 
-不再需要配置 `allow-build`。运行依赖已写入 `package.json`，精确版本由 `package-lock.json` 锁定；这两个文件就是 Node.js 项目对应 Python `requirements.txt` 的机制。
+不再需要配置 `allow-build`。运行依赖已写入 `package.json`，精确版本由 `package-lock.json` 锁定；这两个文件就是 Node.js 项目对应 Python `requirements.txt` 的机制。npm 公共包尚未发布，因此当前请使用上面的 GitHub 固定版本命令。
 
 ![DSH Web 中已启用 Vision Tiler](assets/dsh-web-installed-v0.2.3.png)
 

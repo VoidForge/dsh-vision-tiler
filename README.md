@@ -22,20 +22,14 @@ DeepSeek documents a maximum of 384 vision tokens per image and scales large ima
 
 Requirements: DeepSeek Harness, a vision-capable DSH model profile, and Node.js 22 or later.
 
-From npm:
-
-```shell
-dsh plugin --profile web add dsh-vision-tiler
-dsh --profile web --dump-config
-```
-
 Pinned GitHub release:
 
 ```shell
 dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek#v0.2.3
+dsh --profile web --dump-config
 ```
 
-No `allow-build` entry is required. Runtime packages are declared in `package.json` and locked in `package-lock.json`; these files are the Node.js equivalent of Python's `requirements.txt`.
+No `allow-build` entry is required. Runtime packages are declared in `package.json` and locked in `package-lock.json`; these files are the Node.js equivalent of Python's `requirements.txt`. An npm registry release is planned but is not yet published, so use the pinned GitHub command above.
 
 ![DSH Web showing Vision Tiler enabled](assets/dsh-web-installed-v0.2.3.png)
 
