@@ -3,10 +3,20 @@ import test from 'node:test';
 import { mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import sharp from 'sharp';
+import { Jimp, JimpMime } from 'jimp';
 import { isJsonValue } from '@deepseek-ai/dsh-session';
 import { apply as applyPlugin } from '../lib/index.js';
+import { applyOrientation, RasterImage } from '../lib/core/image-codec.js';
 import { auditCoverage, planTiles, prepareImageBatch } from '../lib/core/index.js';
+
+async function solidPng(width, height, color = 0xffffffff) {
+  return new Jimp({ width, height, color }).getBuffer(JimpMime.png, { compressionLevel: 9 });
+}
+
+const WEBP_16_BY_12 = Buffer.from(
+  'UklGRjYAAABXRUJQVlA4ICoAAACwAQCdASoQAAwAAgA0JaACdLoABGaAAP7udn/3BmfV2OH9zY5xbIYAAAA=',
+  'base64',
+);
 
 test('planner covers every source pixel and overlaps internal seams', () => {
   const plan = planTiles(5000, 3200);
@@ -48,9 +58,7 @@ test('planner fails closed when tile count exceeds configured safety cap', () =>
 });
 
 test('image preparation makes deterministic, bounded batches', async () => {
-  const source = await sharp({
-    create: { width: 2400, height: 1600, channels: 3, background: '#f8f8f8' },
-  }).png().toBuffer();
+  const source = await solidPng(2400, 1600, 0xf8f8f8ff);
   const first = await prepareImageBatch(source, { strategy: 'uniform', maxImagesPerBatch: 5, batchIndex: 0 });
   const second = await prepareImageBatch(source, { strategy: 'uniform', maxImagesPerBatch: 5, batchIndex: 1 });
 
@@ -64,21 +72,16 @@ test('image preparation makes deterministic, bounded batches', async () => {
   assert.equal(first.estimatedVisionTokenCap, 5 * 384);
 
   for (const image of first.images) {
-    const metadata = await sharp(image.data).metadata();
-    assert.ok((metadata.width ?? 0) <= 800);
-    assert.ok((metadata.height ?? 0) <= 800);
+    const decoded = await Jimp.read(image.data);
+    assert.ok(decoded.width <= 800);
+    assert.ok(decoded.height <= 800);
   }
 });
 
 test('adaptive strategy preserves base coverage and adds ordered dense-region detail crops', async () => {
-  const source = await sharp({
-    create: { width: 1200, height: 1800, channels: 3, background: '#ffffff' },
-  })
-    .composite([
-      { input: await sharp({ create: { width: 500, height: 350, channels: 3, background: '#111111' } }).png().toBuffer(), left: 650, top: 1200 },
-    ])
-    .png()
-    .toBuffer();
+  const sourceImage = new Jimp({ width: 1200, height: 1800, color: 0xffffffff });
+  sourceImage.composite(new Jimp({ width: 500, height: 350, color: 0x111111ff }), 650, 1200);
+  const source = await sourceImage.getBuffer(JimpMime.png, { compressionLevel: 9 });
   const prepared = await prepareImageBatch(source, {
     mode: 'document',
     strategy: 'adaptive',
@@ -95,12 +98,26 @@ test('adaptive strategy preserves base coverage and adds ordered dense-region de
   assert.ok(prepared.images.some((image) => image.kind === 'detail'));
 });
 
+test('WebP input is decoded through the bundled WASM path', async () => {
+  const prepared = await prepareImageBatch(WEBP_16_BY_12, { strategy: 'uniform' });
+  assert.equal(prepared.originalWidth, 16);
+  assert.equal(prepared.originalHeight, 12);
+  assert.equal(prepared.plan.audit.coverageRatio, 1);
+  assert.equal(prepared.plan.audit.uncoveredPixels, 0);
+  assert.equal(prepared.images.length, 2);
+});
+
+test('EXIF orientation transforms preserve the expected dimensions', () => {
+  const portrait = RasterImage.from(new Jimp({ width: 2, height: 3, color: 0xffffffff }));
+  const rotated = applyOrientation(portrait, 6);
+  assert.equal(rotated.width, 3);
+  assert.equal(rotated.height, 2);
+});
+
 test('DSH plugin registers a tool that publishes image attachment blocks', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'dsh-vision-tiler-'));
   const path = join(directory, 'sample.png');
-  await writeFile(path, await sharp({
-    create: { width: 900, height: 1200, channels: 3, background: '#ffffff' },
-  }).png().toBuffer());
+  await writeFile(path, await solidPng(900, 1200));
 
   let definition;
   const ctx = {

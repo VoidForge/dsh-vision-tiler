@@ -1,121 +1,112 @@
 # DSH Vision Tiler
 
-为 DeepSeek Harness（DSH）提供高分辨率图片分块读取能力的 Cordis 插件。它会在图片进入视觉模型前生成一张全局预览、带重叠的完整覆盖切片，以及可选的密集区域放大图，减少长文档、表格和密集小字因整图缩放造成的信息损失。
+[中文说明](README.zh-CN.md) · [Technical report](docs/DSH视觉分块插件v2技术报告.md) · [Dense-text benchmark](docs/密集文字识别五模型补充报告.md)
 
-## 核心能力
+Full-coverage image tiling for DeepSeek Harness (DSH) vision models. The plugin turns one high-resolution image into a global overview, overlapping coverage tiles, and an optional dense-region detail crop before the model reads it.
 
-- **完整覆盖**：基础切片的矩形并集精确覆盖方向校正后的原图，插件会返回可审计的覆盖率。
-- **边界重叠**：相邻切片保留重叠区域，降低文字或图形恰好落在切缝上的风险。
-- **自适应切缝**：文档模式优先把横向切缝移到低墨迹密度区域，尽量避开文字行。
-- **密集区复核**：默认补充一个 512×512 高密度区域放大图；它只做补充，不替代完整覆盖切片。
-- **批次读取**：当图片较多时按批返回，避免一次塞入过多视觉输入。
-- **可追踪输出**：每张切片都带原图坐标、角色、批次、覆盖率和保守视觉 token 上限。
+![Dense-text benchmark comparison](assets/benchmark-comparison.png)
 
-## 与 Cordis / Harness 的对应关系
+## Why it exists
 
-实现遵循 [Cordis 插件教程](https://deepseek-harness.github.io/deepseek-harness/develop/cordis-tutorial/) 和 [Harness 工具开发说明](https://deepseek-harness.github.io/deepseek-harness/develop/basic/tool)：
+DeepSeek documents a maximum of 384 vision tokens per image and scales large images before inference. That budget is often enough for ordinary photos, but it can remove small characters from receipts, tables, diagrams, and long screenshots. DSH Vision Tiler gives each local region its own image budget while preserving a complete, auditable view of the source.
 
-- 通过 `apply(ctx, config)` 安装插件，并用 `inject = ['tools', 'attachments']` 声明服务依赖。
-- 通过 `ctx.tools.register(defineTool(...))` 注册 `segment_image` 工具。
-- 使用 `output.schema` 定义稳定的结构化结果，使用 `output.render` 生成持久化内容块。
-- 在 `package.json` 中声明 `dsh.bundle.patch`，由 `cordis.patch.yml` 把插件写入 Harness 配置。
-- 工具注册由 Cordis 生命周期管理，插件卸载时会自动执行 disposer。
+- **100% geometric coverage:** coverage tiles are audited against every source pixel.
+- **Overlapping seams:** text and shapes that cross a tile edge remain visible in a neighbour.
+- **Content-aware cuts:** document mode moves horizontal seams toward low-ink areas.
+- **Dense-region review:** an optional 512×512 detail crop supplements, never replaces, base coverage.
+- **Bounded batches:** large tile sets are returned in model-safe batches.
+- **Traceable output:** each tile carries source coordinates, role, batch state, coverage, and a conservative token cap.
+- **No native image build:** v0.2.3 uses pure JavaScript plus bundled WebAssembly, avoiding `sharp`/libvips conflicts inside DSH Web.
 
-## 安装
+## Install
 
-### 从 GitHub 安装
+Requirements: DeepSeek Harness, a vision-capable DSH model profile, and Node.js 22 or later.
 
-```powershell
-dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek
+From npm:
+
+```shell
+dsh plugin --profile web add dsh-vision-tiler
 dsh --profile web --dump-config
 ```
 
-生产环境建议固定到明确提交，避免仓库后续更新改变运行结果：
+Pinned GitHub release:
 
-```powershell
-dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek#<commit-sha>
+```shell
+dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek#v0.2.3
 ```
 
-Git 依赖会执行本仓库的 `prepare` 构建脚本。pnpm 10 及以上版本可能阻止依赖构建；如果 DSH 输出 `Ignored build scripts`，请把它打印出的**完整且精确的包键**加入该 profile 的 `pnpm-workspace.yaml` 中 `allowBuilds`，再重新安装。不要凭包名猜测这个键。
+No `allow-build` entry is required. Runtime packages are declared in `package.json` and locked in `package-lock.json`; these files are the Node.js equivalent of Python's `requirements.txt`.
 
-### 从本地压缩包安装
+![DSH Web showing Vision Tiler enabled](assets/dsh-web-installed-v0.2.3.png)
 
-```powershell
-npm install
-npm run build
-npm pack
-dsh plugin --profile web add .\local-dsh-vision-tiler-0.2.2.tgz
-dsh --profile web --dump-config
-```
+## Use
 
-压缩包包含预编译的 `lib/`，适合不希望在 DSH 安装阶段构建源码的环境。
-
-## 使用
-
-### 选择真正的视觉模型
-
-DeepSeek Harness 默认的 `deepseek-v4-flash` 路由只声明文本输入。要让模型实际看到 `segment_image` 返回的附件，需要把 profile 的默认模型切换为官方视觉实验模型：
-
-```yaml
-- id: agent-default-model
-  name: '@deepseek-ai/dsh-agent-default-model'
-  config:
-    provider: deepseek-official
-    model: deepseek-v4-flash-vision-exp
-```
-
-把这段配置写入对应 profile 的 `cordis.patch.yml`。如果仍使用纯文本模型，几何分块可以成功，但 Harness 会省略模型不支持的图片附件。
-
-让 DSH 调用 `segment_image`，从第 0 批开始读取；如果返回剩余批次，再逐批继续：
+Ask the model to call the registered `segment_image` tool and continue through every returned batch:
 
 ```text
-请调用 segment_image 读取 D:\images\document.png，先使用 batch_index=0；
-如果返回 remaining_batch_indices，请逐批读取完毕后再回答，并列出 uncertain_regions。
+Call segment_image for D:\images\document.png with mode=document and batch_index=0.
+If remaining_batch_indices is not empty, read every remaining batch before answering.
+Report uncertain_regions and cite the tile IDs used.
 ```
 
-主要参数：
-
-| 参数 | 说明 |
+| Argument | Meaning |
 |---|---|
-| `path` | 绝对路径，或相对于 DSH 进程工作目录的路径 |
-| `mode` | `auto`、`document`、`diagram` 或 `photo` |
-| `strategy` | `adaptive`（默认）或 `uniform`（对照模式） |
-| `batch_index` | 从 0 开始的图片批次 |
+| `path` | Absolute path, or a path relative to the DSH process directory |
+| `mode` | `auto`, `document`, `diagram`, or `photo` |
+| `strategy` | `adaptive` (default) or `uniform` (control mode) |
+| `batch_index` | Zero-based output batch |
 
-输出包含全局预览、基础覆盖切片、可选 `DETAIL` 放大图、原图坐标、覆盖审计、剩余批次，以及 `图片数 × 384` 的保守视觉 token 上限。
+The DSH profile must use a model that accepts image attachments. A text-only route can run the tiler, but it cannot pass the resulting images to the model.
 
-## 效果摘要
+## Measured results
 
-密集文字实验每种配置运行 12 次，字符级 F1 如下。这里的 token 是 API 返回或按官方 384 token/图规则计算的总输入/输出消耗；不同模型平台的统计口径并不完全等价。
+The controlled dense-text benchmark contains four synthetic pages with 100 unique eight-character codes each. Every model arm read each page independently three times: 12 calls and 1,200 exact-code decisions per arm.
 
-| 配置 | 字符 F1 | 中位延迟 | 平均 token/次 |
-|---|---:|---:|---:|
-| DeepSeek 直接整图 | 19.68% | 6.87 秒 | 1,136 |
-| **DeepSeek + 本插件** | **96.44%** | **6.08 秒** | **4,971** |
-| GPT-5.5 | 99.25% | 27.95 秒 | 平台口径见报告 |
-| GPT-5.6 Terra | 98.67% | 25.17 秒 | 平台口径见报告 |
-| GPT-5.6 Luna | 94.99% | 27.48 秒 | 平台口径见报告 |
+| Configuration | Exact-code F1 | Median latency | Mean total tokens/call | Estimated cost/call |
+|---|---:|---:|---:|---:|
+| GPT-5.5 | 99.25% | 27.95 s | Not exposed | Codex subscription; not convertible |
+| GPT-5.6 Terra | 98.67% | 25.17 s | Not exposed | Codex subscription; not convertible |
+| **DeepSeek + plugin** | **96.44%** | **6.08 s** | **4,970.8** | **¥0.004521** observed-cache estimate |
+| GPT-5.6 Luna | 94.99% | 27.48 s | Not exposed | Codex subscription; not convertible |
+| DeepSeek direct image | 19.68% | 6.87 s | 1,135.5 | ¥0.001830 estimate |
 
-完整方法、原始矩阵与限制见：
+For this task, tiling increased the estimated DeepSeek charge per call by about 2.47×, but reduced estimated cost per 100 correct codes by about 51%. DeepSeek's experimental vision model has no separate public price row, so these values use the published V4 Flash rates and are estimates, not invoices. Codex does not expose per-task vision tokens or billable API cost here, so GPT prices are intentionally not guessed.
 
-- [`docs/DSH视觉分块插件v2技术报告.md`](docs/DSH视觉分块插件v2技术报告.md)
-- [`docs/密集文字识别五模型补充报告.md`](docs/密集文字识别五模型补充报告.md)
-- [`benchmarks/dense-text-matrix.json`](benchmarks/dense-text-matrix.json)
-- [`benchmarks/five-model-matrix.json`](benchmarks/five-model-matrix.json)
+### Does the 384-token cap reduce reading quality?
 
-## 开发与测试
+It can, especially when a large image contains small, low-contrast, or tightly packed text. In the controlled test, the model and prompt stayed the same while the input changed from one scaled image to complete local tiles; F1 rose from 19.68% to 96.44%. This is strong engineering evidence for that workload, not a claim that every image needs tiling.
 
-```powershell
+## How it works
+
+1. Decode PNG/JPEG/BMP/GIF/TIFF with Jimp and WebP with bundled WASM.
+2. Apply EXIF orientation and reject images above the 100-million-pixel safety limit.
+3. Generate a downscaled overview.
+4. Plan overlapping tiles whose union covers the full oriented source.
+5. In adaptive document mode, move seams toward low-density rows and select optional dense details.
+6. Audit coverage, encode PNG attachments, and return bounded batches with coordinates.
+
+The plugin guarantees geometric pixel coverage. It cannot guarantee that a model semantically recognises every visible character; blurred input, compression artefacts, unusual fonts, and model errors still require review.
+
+## Evidence and reproducibility
+
+- [v2 technical report](docs/DSH视觉分块插件v2技术报告.md)
+- [Five-model dense-text report](docs/密集文字识别五模型补充报告.md)
+- [Dense-text raw matrix](benchmarks/dense-text-matrix.json)
+- [Five-model raw matrix](benchmarks/five-model-matrix.json)
+- [Experiment runner](experiment/README.md)
+
+The public repository contains aggregate results and reproducible generators, but never API keys or local caches.
+
+## Development
+
+```shell
 npm install
 npm test
+npm pack
 ```
 
-测试覆盖自适应切缝、完整覆盖审计、批次切分、工具输出和渲染行为。数据集、API 密钥和本地实验缓存不会提交到仓库。
+The test suite covers exact geometric coverage, seam overlap, safety caps, deterministic batching, adaptive detail selection, WebP/WASM decoding, EXIF orientation, and DSH tool rendering. See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
-### Windows 实测说明
+## License
 
-本项目在 Windows、Node 22.23.2、DSH 0.1.1-rc.2 上完成了端到端验证。该版本 DSH 自带的 `@deepseek-ai/dsh-attachment-local` 在测试机加载 `sharp 0.35.3` 时出现 `ERR_DLOPEN_FAILED`；独立测试运行时将这项 DSH 传递依赖固定为 `sharp 0.34.5` 后可正常启动。这是 DSH 附件模块的 Windows 二进制兼容问题，不是 `segment_image` 的几何分块错误；上游修复后应移除该临时覆盖。
-
-## 边界与限制
-
-插件能保证的是几何意义上的像素覆盖，并通过重叠和放大降低信息损失；它不能保证视觉模型语义上正确识别每个可见字符。模糊、压缩伪影、异常字体和模型本身的识别错误仍可能存在，因此关键任务应检查 `seen_tiles`、`edge_checks` 和 `uncertain_regions`，必要时对原始区域做人工复核。
+MIT

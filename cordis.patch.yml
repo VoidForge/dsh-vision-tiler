@@ -1,6 +1,6 @@
 - insert:
     - id: vision-tiler
-      name: '@local/dsh-vision-tiler'
+      name: 'dsh-vision-tiler'
       config:
         targetTilePixels: 589824
         minOverlapPixels: 64

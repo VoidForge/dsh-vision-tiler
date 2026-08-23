@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import sharp from 'sharp';
+import { encodePng, readImage, resizeToFit, type RasterImage } from './image-codec.js';
 import { auditCoverage, planTiles } from './planner.js';
 import type {
   ImageTilerOptions,
@@ -41,14 +41,11 @@ function windowStarts(length: number, size: number): number[] {
   return starts;
 }
 
-async function makeDensityMap(data: Uint8Array, sourceWidth: number, sourceHeight: number): Promise<DensityMap> {
-  const raw = await sharp(data)
-    .resize({ width: 512, height: 2048, fit: 'inside', withoutEnlargement: true })
-    .grayscale()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const width = raw.info.width;
-  const height = raw.info.height;
+function makeDensityMap(image: RasterImage, sourceWidth: number, sourceHeight: number): DensityMap {
+  const densityImage = resizeToFit(image, 512, 2048).greyscale();
+  const width = densityImage.width;
+  const height = densityImage.height;
+  const pixels = densityImage.bitmap.data;
   const values = new Float32Array(width * height);
   const integral = new Float64Array((width + 1) * (height + 1));
 
@@ -56,10 +53,10 @@ async function makeDensityMap(data: Uint8Array, sourceWidth: number, sourceHeigh
     let rowTotal = 0;
     for (let x = 0; x < width; x += 1) {
       const index = y * width + x;
-      const pixel = raw.data[index];
+      const pixel = pixels[index * 4];
       const darkness = Math.max(0, (238 - pixel) / 238);
-      const horizontalEdge = x > 0 ? Math.abs(pixel - raw.data[index - 1]) / 255 : 0;
-      const verticalEdge = y > 0 ? Math.abs(pixel - raw.data[index - width]) / 255 : 0;
+      const horizontalEdge = x > 0 ? Math.abs(pixel - pixels[(index - 1) * 4]) / 255 : 0;
+      const verticalEdge = y > 0 ? Math.abs(pixel - pixels[(index - width) * 4]) / 255 : 0;
       const value = darkness * 0.65 + Math.min(1, horizontalEdge + verticalEdge) * 0.35;
       values[index] = value;
       rowTotal += value;
@@ -224,20 +221,16 @@ export async function prepareImageBatch(
     throw new RangeError('detailCropSide must be an integer from 256 to 1024');
   }
 
-  const normalized = await sharp(input, { limitInputPixels: 100_000_000 })
-    .rotate()
-    .toColorspace('srgb')
-    .png({ compressionLevel: pngCompressionLevel })
-    .toBuffer({ resolveWithObject: true });
+  const normalized = await readImage(input);
   throwIfAborted(options.signal);
 
-  const width = normalized.info.width;
-  const height = normalized.info.height;
+  const width = normalized.width;
+  const height = normalized.height;
   const overlapRatio = options.overlapRatio ?? MODE_OVERLAP[mode];
   const uniformPlan = planTiles(width, height, { ...options, overlapRatio });
   const shouldAdapt = strategy === 'adaptive' && (mode === 'auto' || mode === 'document');
   const densityMap = shouldAdapt && uniformPlan.tiles.length > 1
-    ? await makeDensityMap(normalized.data, width, height)
+    ? makeDensityMap(normalized, width, height)
     : undefined;
   const plan = densityMap ? makeContentAwarePlan(uniformPlan, densityMap) : {
     ...uniformPlan,
@@ -267,27 +260,28 @@ export async function prepareImageBatch(
 
   const images: PreparedImage[] = [];
   if (includeOverview) {
-    const data = await sharp(normalized.data)
-      .resize({ width: overviewMaxEdge, height: overviewMaxEdge, fit: 'inside', withoutEnlargement: true })
-      .png({ compressionLevel: pngCompressionLevel })
-      .toBuffer();
+    const data = await encodePng(resizeToFit(normalized, overviewMaxEdge, overviewMaxEdge), pngCompressionLevel);
     images.push({ kind: 'overview', name: `${imageSetId}-overview.png`, mediaType: 'image/png', data });
   }
 
-  const tileImages = await Promise.all(selectedTiles.map(async (tile): Promise<PreparedImage> => {
+  const tileImages: PreparedImage[] = [];
+  for (const tile of selectedTiles) {
     throwIfAborted(options.signal);
-    const data = await sharp(normalized.data)
-      .extract({ left: tile.left, top: tile.top, width: tile.width, height: tile.height })
-      .png({ compressionLevel: pngCompressionLevel })
-      .toBuffer();
-    return {
+    const cropped = normalized.clone().crop({
+      x: tile.left,
+      y: tile.top,
+      w: tile.width,
+      h: tile.height,
+    });
+    const data = await encodePng(cropped, pngCompressionLevel);
+    tileImages.push({
       kind: tile.role === 'detail' ? 'detail' : 'tile',
       name: `${imageSetId}-${tile.id}.png`,
       mediaType: 'image/png',
       data,
       tile,
-    };
-  }));
+    });
+  }
   images.push(...tileImages);
   throwIfAborted(options.signal);
 

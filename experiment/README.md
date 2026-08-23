@@ -10,7 +10,7 @@ This isolates the resolution effect while holding the recognition engine constan
 Run:
 
 ```powershell
-npm run experiment -- --data-dir D:\CodexData\dsh-vision-tiler\DocumentVQA --limit 12
+npm run experiment -- --data-dir <path-to-DocumentVQA> --limit 12
 ```
 
 Raw data, generated tiles, the Tesseract language model, and detailed results remain under the D-drive data directory.
