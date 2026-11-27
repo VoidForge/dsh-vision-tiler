@@ -25,7 +25,7 @@ DeepSeek 文档说明：大图进入模型前会缩放，每张图片最多消�
 固定到 GitHub 发布版本：
 
 ```shell
-dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek#v0.2.3
+dsh plugin --profile web add github:VoidForge/dsh-vision-tiler#v0.2.3
 dsh --profile web --dump-config
 ```
 

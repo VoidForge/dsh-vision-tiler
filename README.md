@@ -25,7 +25,7 @@ Requirements: DeepSeek Harness, a vision-capable DSH model profile, and Node.js 
 Pinned GitHub release:
 
 ```shell
-dsh plugin --profile web add github:zyh20041227/improved_vision_for_deepseek#v0.2.3
+dsh plugin --profile web add github:VoidForge/dsh-vision-tiler#v0.2.3
 dsh --profile web --dump-config
 ```
 

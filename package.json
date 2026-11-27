@@ -14,12 +14,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zyh20041227/improved_vision_for_deepseek.git"
+    "url": "git+https://github.com/VoidForge/dsh-vision-tiler.git"
   },
   "bugs": {
-    "url": "https://github.com/zyh20041227/improved_vision_for_deepseek/issues"
+    "url": "https://github.com/VoidForge/dsh-vision-tiler/issues"
   },
-  "homepage": "https://github.com/zyh20041227/improved_vision_for_deepseek#readme",
+  "homepage": "https://github.com/VoidForge/dsh-vision-tiler#readme",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
