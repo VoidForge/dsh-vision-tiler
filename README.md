@@ -4,8 +4,6 @@
 
 Full-coverage image tiling for DeepSeek Harness (DSH) vision models. The plugin turns one high-resolution image into a global overview, overlapping coverage tiles, and an optional dense-region detail crop before the model reads it.
 
-![Dense-text benchmark comparison](assets/benchmark-comparison.png)
-
 ## Why it exists
 
 DeepSeek prices each image by its dimensions and caps one image at 1024 vision tokens: images below about 544×544 total pixels are scaled up, and larger images are scaled toward a 1300×1300 total-pixel equivalent. A whole page therefore loses small characters in receipts, tables, diagrams, and long screenshots. DSH Vision Tiler gives each local region its own image budget while preserving a complete, auditable view of the source.
@@ -56,7 +54,7 @@ The DSH profile must use a model that accepts image attachments. A text-only rou
 
 ## Configuration
 
-The plugin exposes these options in the DSH plugin settings. `models` decides whether the tool exists for the current model at all.
+The plugin exposes these options on its page in the DSH Plugins panel. `models` decides whether the tool exists for the current model at all.
 
 | Option | Default | Meaning |
 |---|---|---|
@@ -71,6 +69,14 @@ The plugin exposes these options in the DSH plugin settings. `models` decides wh
 | `defaultStrategy` | adaptive | Tiling strategy when the caller does not choose one. |
 | `detailCropCount` | 1 adaptive, 0 uniform | Dense-region detail crops. |
 | `detailCropSide` | 512 | Side of one detail crop. |
+
+### Settings page
+
+Open Plugins, then Installed plugins, then the Vision tiler bundle. The form is on the bundle page, not on the card. It appears after the running app has read this bundle's browser half; that half is new, so restart DSH once (or switch the plugin off and on) before opening the page. A page reload alone does not rescan the package manifest.
+
+Every field applies to the next `segment_image` call; saving does not restart the plugin. Saves go to the active profile's Cordis patch through the DSH settings service, which validates the whole configuration before accepting a value.
+
+Clearing a number restores the value beneath your override: the plugin's installed configuration or its schema default. `overlapRatio` and `detailCropCount` have no schema default; when no installed value supplies one, clearing them means the per-mode or per-strategy default. Clearing `models` saves an empty list and hides the tool; it does not restore the default prefixes.
 
 The tool is registered per model step, so switching to a model outside `models` hides `segment_image` instead of tiling for a provider that already has its own image pipeline.
 
@@ -91,24 +97,6 @@ Every batch reports `estimatedVisionTokens` and `visionTokenCap`. The estimate c
 | any image, provider cap | 1024 |
 
 A coverage tile or detail crop that DSH or the provider would downscale or project is rejected with a `RangeError`, so `targetTilePixels` and `detailCropSide` must keep every image inside the budget. Provider upscaling below the 544×544 floor is allowed. `overviewMaxEdge` must stay at or below the exported per-side request limit, 4096 today; the overview is a preview and may be projected. The no-resize guard assumes the attachment store's default normalization budget; a profile that lowers `normalizedImageMaxPixels` or `normalizedImageMaxDimension` can still downscale a saved tile, and the estimate then prices the saved size. The estimate assumes the default high/original detail route: any `imagePixelBudget` override on a model route, such as `low` (512×512), prices images differently and is out of scope. The `usage` field returned by the API remains authoritative.
-
-## Measured results
-
-The controlled dense-text benchmark contains four synthetic pages with 100 unique eight-character codes each. Every model arm read each page independently three times: 12 calls and 1,200 exact-code decisions per arm. These runs predate the 1024-token model: they used the v4/384 accounting and the plugin's 768 px defaults.
-
-| Configuration | Exact-code F1 | Median latency | Mean total tokens/call | Estimated cost/call |
-|---|---:|---:|---:|---:|
-| GPT-5.5 | 99.25% | 27.95 s | Not exposed | Codex subscription; not convertible |
-| GPT-5.6 Terra | 98.67% | 25.17 s | Not exposed | Codex subscription; not convertible |
-| **DeepSeek + plugin** | **96.44%** | **6.08 s** | **4,970.8** | **¥0.004521** observed-cache estimate |
-| GPT-5.6 Luna | 94.99% | 27.48 s | Not exposed | Codex subscription; not convertible |
-| DeepSeek direct image | 19.68% | 6.87 s | 1,135.5 | ¥0.001830 estimate |
-
-For this task, tiling increased the estimated DeepSeek charge per call by about 2.47×, but reduced estimated cost per 100 correct codes by about 51%. DeepSeek's experimental vision model has no separate public price row, so these values use the published V4 Flash rates and are estimates, not invoices. Codex does not expose per-task vision tokens or billable API cost here, so GPT prices are intentionally not guessed.
-
-### Does the per-image token cap reduce reading quality?
-
-It can, especially when a large image contains small, low-contrast, or tightly packed text. In the controlled test, the model and prompt stayed the same while the input changed from one scaled image to complete local tiles; F1 rose from 19.68% to 96.44%. Those runs used the 384-token v4 model, so the comparison is evidence for that workload under that accounting, not a measurement of the current 1024-token cap. It is not a claim that every image needs tiling.
 
 ## How it works
 

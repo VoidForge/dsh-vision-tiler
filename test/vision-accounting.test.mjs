@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Jimp, JimpMime } from 'jimp';
 import { deepSeekImageTokens } from '@deepseek-ai/dsh-llm-deepseek';
-import { apply as applyPlugin } from '../lib/index.js';
+import { Config, apply as applyPlugin } from '../lib/index.js';
 import {
   assertImageSentUnchanged,
   assertVisionAccounting,
@@ -45,6 +45,16 @@ function executionContext() {
 function createHost({ normalizeDimensions = (dimensions) => dimensions } = {}) {
   const state = { definition: undefined, options: undefined, saveCalls: 0, saved: [] };
   const ctx = {
+    fiber: { role: 'test-fiber' },
+    inject(services, callback) {
+      callback({
+        settings: { configure: () => () => {} },
+        effect(execute) {
+          const dispose = execute();
+          return typeof dispose === 'function' ? dispose : () => {};
+        },
+      });
+    },
     tools: {
       register(definition, options) {
         state.definition = definition;
@@ -176,7 +186,7 @@ test('assertImageSentUnchanged rejects resized or oversized tile and detail imag
 test('segment_image rejects a coverage tile DSH would resize before saving attachments', async (t) => {
   const path = await writeSourceImage(t, 2000, 2000);
   const { ctx, state } = createHost();
-  applyPlugin(ctx, { targetTilePixels: 4_000_000 });
+  applyPlugin(ctx, Config({ targetTilePixels: 4_000_000 }));
   assert.ok(state.definition);
 
   await assert.rejects(
@@ -189,7 +199,7 @@ test('segment_image rejects a coverage tile DSH would resize before saving attac
 test('segment_image prices each emitted image and caps the batch at 1024 tokens per image', async (t) => {
   const path = await writeSourceImage(t, 900, 1200);
   const { ctx, state } = createHost();
-  applyPlugin(ctx, {});
+  applyPlugin(ctx, Config({}));
   assert.ok(state.definition);
 
   const value = await state.definition.execute(
@@ -221,7 +231,7 @@ test('segment_image prices normalized attachment refs instead of prepared dimens
   const { ctx, state } = createHost({
     normalizeDimensions: () => ({ width: 100, height: 100 }),
   });
-  applyPlugin(ctx, {});
+  applyPlugin(ctx, Config({}));
   assert.ok(state.definition);
 
   const value = await state.definition.execute(
@@ -246,7 +256,7 @@ test('segment_image prices an overview ref normalized to the DSH pixel budget', 
       image.name.endsWith('-overview.png') ? { width: 1091, height: 3842 } : dimensions
     ),
   });
-  applyPlugin(ctx, { overviewMaxEdge: 4096 });
+  applyPlugin(ctx, Config({ overviewMaxEdge: 4096 }));
   assert.ok(state.definition);
 
   const value = await state.definition.execute(
@@ -269,7 +279,7 @@ test('segment_image prices an overview ref normalized to the DSH pixel budget', 
 test('segment_image sends a projected overview and prices it at the request dimensions', async (t) => {
   const path = await writeSourceImage(t, 4000, 1000);
   const { ctx, state } = createHost();
-  applyPlugin(ctx, { overviewMaxEdge: 4096 });
+  applyPlugin(ctx, Config({ overviewMaxEdge: 4096 }));
   assert.ok(state.definition);
   assert.throws(() => assertImageSentUnchanged('tile', 4000, 1000), RangeError);
 
@@ -288,12 +298,16 @@ test('segment_image sends a projected overview and prices it at the request dime
   assert.equal(value.batch.estimatedVisionTokens, expected);
 });
 
+function overviewOnlyConfig(value) {
+  return { overviewMaxEdge: { get: () => value } };
+}
+
 test('apply rejects a non-positive, fractional, or non-finite overviewMaxEdge', () => {
   for (const overviewMaxEdge of [NaN, 0, -5, 800.5]) {
     const { ctx, state } = createHost();
     assert.throws(
-      () => applyPlugin(ctx, { overviewMaxEdge }),
-      RangeError,
+      () => applyPlugin(ctx, overviewOnlyConfig(overviewMaxEdge)),
+      (error) => error instanceof RangeError && /overviewMaxEdge/.test(error.message),
       String(overviewMaxEdge),
     );
     assert.equal(state.definition, undefined, String(overviewMaxEdge));
@@ -302,12 +316,37 @@ test('apply rejects a non-positive, fractional, or non-finite overviewMaxEdge', 
 
 test('apply rejects an overviewMaxEdge above the 4096 px request limit', () => {
   const { ctx, state } = createHost();
-  assert.throws(() => applyPlugin(ctx, { overviewMaxEdge: 5000 }), RangeError);
+  assert.throws(
+    () => applyPlugin(ctx, overviewOnlyConfig(5000)),
+    (error) => error instanceof RangeError && /overviewMaxEdge/.test(error.message),
+  );
   assert.equal(state.definition, undefined);
 });
 
 test('apply accepts an overviewMaxEdge at the 4096 px request limit', () => {
   const { ctx, state } = createHost();
-  assert.doesNotThrow(() => applyPlugin(ctx, { overviewMaxEdge: 4096 }));
+  assert.doesNotThrow(() => applyPlugin(ctx, overviewOnlyConfig(4096)));
   assert.ok(state.definition);
+});
+
+test('segment_image rejects a live overviewMaxEdge outside the request limit on every call', async (t) => {
+  const path = await writeSourceImage(t, 16, 12);
+  const { ctx, state } = createHost();
+  const config = Config({});
+  applyPlugin(ctx, config);
+  assert.ok(state.definition);
+
+  const volatileWrite = Symbol.for('cosmokit.volatile.write');
+  for (const overviewMaxEdge of [NaN, 0, -5, 800.5, 5000]) {
+    config.overviewMaxEdge[volatileWrite](overviewMaxEdge);
+    await assert.rejects(
+      state.definition.execute(
+        { path, mode: 'document', batch_index: 0 },
+        executionContext(),
+      ),
+      (error) => error instanceof RangeError && /overviewMaxEdge/.test(error.message),
+      String(overviewMaxEdge),
+    );
+  }
+  assert.equal(state.saveCalls, 0);
 });

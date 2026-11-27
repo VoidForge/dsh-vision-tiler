@@ -17,43 +17,59 @@ import {
   providerVisionTokens,
 } from './vision-accounting.js';
 
-export interface Config {
-  targetTilePixels?: number;
-  overlapRatio?: number;
-  minOverlapPixels?: number;
-  maxTotalTiles?: number;
-  maxImagesPerBatch?: number;
-  includeOverview?: boolean;
-  overviewMaxEdge?: number;
-  defaultStrategy?: TilingStrategy;
-  detailCropCount?: number;
-  detailCropSide?: number;
-  models?: string[];
+/** A configuration value whose current value can change without remounting the plugin. */
+interface Live<T> {
+  get(): T;
 }
 
-export const Config: z<Config> = z.object({
+export interface Config {
+  targetTilePixels: Live<number>;
+  overlapRatio: Live<number | undefined>;
+  minOverlapPixels: Live<number>;
+  maxTotalTiles: Live<number>;
+  maxImagesPerBatch: Live<number>;
+  includeOverview: Live<boolean>;
+  overviewMaxEdge: Live<number>;
+  defaultStrategy: Live<TilingStrategy>;
+  detailCropCount: Live<number | undefined>;
+  detailCropSide: Live<number>;
+  models: Live<readonly string[]>;
+}
+
+export const Config = z.object({
   targetTilePixels: z.number().step(1).min(16384).default(768 * 768)
-    .description('Target area of one coverage tile in pixels. A 768x768 tile costs 382 DeepSeek vision tokens.'),
+    .description('Target area of one coverage tile in pixels. A 768x768 tile costs 382 DeepSeek vision tokens.')
+    .volatile(),
   overlapRatio: z.number().min(0).max(0.499)
-    .description('Tile overlap as a fraction of the tile size. Defaults per mode: 0.15 auto, 0.18 document, 0.2 diagram, 0.12 photo.'),
+    .description('Tile overlap as a fraction of the tile size. Defaults per mode: 0.15 auto, 0.18 document, 0.2 diagram, 0.12 photo.')
+    .volatile(),
   minOverlapPixels: z.number().step(1).min(1).default(64)
-    .description('Smallest overlap between neighbouring tiles, in pixels.'),
+    .description('Smallest overlap between neighbouring tiles, in pixels.')
+    .volatile(),
   maxTotalTiles: z.number().step(1).min(1).default(256)
-    .description('Upper bound on coverage tiles before the tool refuses the image.'),
+    .description('Upper bound on coverage tiles before the tool refuses the image.')
+    .volatile(),
   maxImagesPerBatch: z.number().step(1).min(2).default(20)
-    .description('Images returned per call, including the overview.'),
+    .description('Images returned per call, including the overview.')
+    .volatile(),
   includeOverview: z.boolean().default(true)
-    .description('Return a downscaled global overview with every batch.'),
+    .description('Return a downscaled global overview with every batch.')
+    .volatile(),
   overviewMaxEdge: z.number().step(1).min(1).max(MAX_REQUEST_IMAGE_SIDE).default(800)
-    .description('Longest edge of the overview in pixels, at most the 4096 px request limit.'),
+    .description('Longest edge of the overview in pixels, at most the 4096 px request limit.')
+    .volatile(),
   defaultStrategy: z.union(['adaptive', 'uniform']).default('adaptive')
-    .description('Tiling strategy when the caller does not choose one. uniform reproduces v1 geometry.'),
+    .description('Tiling strategy when the caller does not choose one. uniform reproduces v1 geometry.')
+    .volatile(),
   detailCropCount: z.number().step(1).min(0).max(16)
-    .description('Dense-region detail crops. Defaults to 1 for adaptive and 0 for uniform.'),
+    .description('Dense-region detail crops. Defaults to 1 for adaptive and 0 for uniform.')
+    .volatile(),
   detailCropSide: z.number().step(1).min(256).max(1024).default(512)
-    .description('Side of one dense-region detail crop, in pixels.'),
+    .description('Side of one dense-region detail crop, in pixels.')
+    .volatile(),
   models: z.array(z.string()).default([...DEFAULT_MODEL_PREFIXES])
-    .description('Model id prefixes this tool is offered for, for example deepseek-flash or deepseek-v4.1. The earlier deepseek-v4-flash and deepseek-v4-pro ids are not included by default. "*" allows every model. An empty list hides the tool.'),
+    .description('Model id prefixes this tool is offered for, for example deepseek-flash or deepseek-v4.1. The earlier deepseek-v4-flash and deepseek-v4-pro ids are not included by default. "*" allows every model. An empty list hides the tool.')
+    .volatile(),
 });
 
 interface StoredRenderedImage {
@@ -130,23 +146,38 @@ function renderResult(value: JsonValue): ContentBlock[] {
 export const name = 'dsh-vision-tiler';
 export const inject = ['tools', 'attachments'];
 
-export function apply(ctx: Context, config: Config = {}): void {
-  assertVisionAccounting();
-  const models = config.models ?? [...DEFAULT_MODEL_PREFIXES];
-  const overviewMaxEdge = config.overviewMaxEdge ?? 800;
-  if (!Number.isInteger(overviewMaxEdge) || overviewMaxEdge <= 0) {
-    throw new RangeError(`overviewMaxEdge must be a positive integer, got ${String(overviewMaxEdge)}`);
+/** The optional settings service; the page policy is registered when it is mounted. */
+interface SettingsPolicy {
+  configure(presentation: { auto?: boolean }, owner: unknown): () => void;
+}
+
+/**
+ * Validate the overview edge against the per-side request limit.
+ * @param value Configured longest edge in pixels.
+ * @returns The accepted value.
+ */
+function assertOverviewMaxEdge(value: number): number {
+  if (!Number.isInteger(value) || value <= 0) {
+    throw new RangeError(`overviewMaxEdge must be a positive integer, got ${String(value)}`);
   }
-  if (overviewMaxEdge > MAX_REQUEST_IMAGE_SIDE) {
+  if (value > MAX_REQUEST_IMAGE_SIDE) {
     throw new RangeError(
-      `overviewMaxEdge ${overviewMaxEdge} exceeds the ${MAX_REQUEST_IMAGE_SIDE} px per-side request limit`,
+      `overviewMaxEdge ${value} exceeds the ${MAX_REQUEST_IMAGE_SIDE} px per-side request limit`,
     );
   }
-  const configuredBatchSize = config.maxImagesPerBatch ?? 20;
-  const maxImagesPerBatch = Math.min(
-    configuredBatchSize,
-    ctx.attachments.imageLimits.maxImagesPerMessage,
-  );
+  return value;
+}
+
+export function apply(ctx: Context, config: Config): void {
+  assertVisionAccounting();
+  assertOverviewMaxEdge(config.overviewMaxEdge.get());
+  ctx.inject(['settings'], (child) => {
+    const settings = (child as unknown as { settings: SettingsPolicy }).settings;
+    child.effect(
+      () => settings.configure({ auto: false }, ctx.fiber),
+      'vision-tiler: settings page',
+    );
+  });
 
   ctx.tools.register(defineTool({
     name: 'segment_image',
@@ -185,19 +216,23 @@ export function apply(ctx: Context, config: Config = {}): void {
     async execute(args, exec) {
       const absolutePath = resolve(args.path);
       const data = await readFile(absolutePath, { signal: exec.signal });
+      const maxImagesPerBatch = Math.min(
+        config.maxImagesPerBatch.get(),
+        ctx.attachments.imageLimits.maxImagesPerMessage,
+      );
       const prepared = await prepareImageBatch(data, {
         mode: (args.mode ?? 'auto') as TilingMode,
-        strategy: (args.strategy ?? config.defaultStrategy ?? 'adaptive') as TilingStrategy,
+        strategy: (args.strategy ?? config.defaultStrategy.get()) as TilingStrategy,
         batchIndex: args.batch_index ?? 0,
-        targetTilePixels: config.targetTilePixels,
-        overlapRatio: config.overlapRatio,
-        minOverlapPixels: config.minOverlapPixels,
-        maxTotalTiles: config.maxTotalTiles,
+        targetTilePixels: config.targetTilePixels.get(),
+        overlapRatio: config.overlapRatio.get(),
+        minOverlapPixels: config.minOverlapPixels.get(),
+        maxTotalTiles: config.maxTotalTiles.get(),
         maxImagesPerBatch,
-        includeOverview: config.includeOverview ?? true,
-        overviewMaxEdge: config.overviewMaxEdge,
-        detailCropCount: config.detailCropCount,
-        detailCropSide: config.detailCropSide,
+        includeOverview: config.includeOverview.get(),
+        overviewMaxEdge: assertOverviewMaxEdge(config.overviewMaxEdge.get()),
+        detailCropCount: config.detailCropCount.get(),
+        detailCropSide: config.detailCropSide.get(),
         signal: exec.signal,
       });
       for (const image of prepared.images) {
@@ -254,6 +289,6 @@ export function apply(ctx: Context, config: Config = {}): void {
       return result as unknown as JsonValue;
     },
   }), {
-    when: ({ modelSelection }) => modelMatches(models, modelSelection.model),
+    when: ({ modelSelection }) => modelMatches(config.models.get(), modelSelection.model),
   });
 }

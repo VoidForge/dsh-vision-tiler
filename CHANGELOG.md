@@ -2,6 +2,7 @@
 
 ## 0.3.0 — 2026-11-27
 
+- Add a settings page on the Plugins bundle page. Every tiling option is live: a save applies to the next `segment_image` call without restarting the plugin. The browser half is bundled with esbuild and keeps its copy in `locale/en.json` and `locale/zh.json`.
 - Add a `models` option, exposed in the plugin settings through the new `Config` schema: a list of model id prefixes the tool is offered for. `segment_image` is hidden for every other model, so providers with their own image pipeline are left alone.
 - Price every image with DSH's own DeepSeek accounting (`deepSeekImageTokens`, `deepSeekRequestImageDimensions`) from `@deepseek-ai/dsh-llm-deepseek`, replacing the previous 384-token constant.
 - Check at plugin load that `@deepseek-ai/dsh-llm-deepseek` still exports the accounting functions this plugin calls. A DSH release that moves or renames them fails the plugin row with a visible warning; the arithmetic itself is DSH's.
@@ -10,6 +11,7 @@
 - Apply the 4096 px per-side request cap when pricing an image, and price the batch from the saved attachment dimensions so the estimate matches what DSH sends after normalization.
 - `PreparedImage` now carries `width` and `height`; `PreparedImageBatch` no longer carries `estimatedVisionTokenCap`.
 - Require DeepSeek Harness 0.2.2-rc.5 or later.
+- Set the model list input box to Consolas, falling back to DSH's code font, so a zh-CN renderer draws model ids instead of NSimSun.
 
 ## 0.2.3 — 2026-08-23
 

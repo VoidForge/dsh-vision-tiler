@@ -32,6 +32,7 @@
       "types": "./lib/core/index.d.ts",
       "import": "./lib/core/index.js"
     },
+    "./client": "./lib/client.js",
     "./package.json": "./package.json",
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
@@ -47,7 +48,7 @@
     "icon.svg"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.client.json && esbuild src/client.ts --bundle --format=iife --target=es2022 --charset=utf8 --outfile=lib/client.js --log-level=warning",
     "test": "npm run build && node --test test/*.test.mjs",
     "experiment": "npm run build && node --experimental-strip-types experiment/run.ts",
     "experiment:deepseek": "npm run build && node --experimental-strip-types experiment/run-deepseek.ts",
@@ -62,6 +63,9 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
     }
   },
   "engines": {
@@ -89,6 +93,7 @@
     "@deepseek-ai/dsh-util-values": "0.2.2-rc.5",
     "@deepseek-ai/schemastery": "3.19.0",
     "@types/node": "^24.10.1",
+    "esbuild": "^0.28.2",
     "tesseract.js": "^7.0.0",
     "typescript": "^5.9.3"
   }

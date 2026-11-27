@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Jimp, JimpMime } from 'jimp';
 import { isJsonValue } from '@deepseek-ai/dsh-util-values';
-import { apply as applyPlugin } from '../lib/index.js';
+import { Config, apply as applyPlugin } from '../lib/index.js';
 import { applyOrientation, RasterImage } from '../lib/core/image-codec.js';
 import { auditCoverage, planTiles, prepareImageBatch } from '../lib/core/index.js';
 
@@ -122,6 +122,16 @@ test('DSH plugin registers a tool that publishes image attachment blocks', async
 
   let definition;
   const ctx = {
+    fiber: { role: 'test-fiber' },
+    inject(services, callback) {
+      callback({
+        settings: { configure: () => () => {} },
+        effect(execute) {
+          const dispose = execute();
+          return typeof dispose === 'function' ? dispose : () => {};
+        },
+      });
+    },
     tools: { register(value) { definition = value; return () => {}; } },
     attachments: {
       imageLimits: { maxImagesPerMessage: 20 },
@@ -137,7 +147,7 @@ test('DSH plugin registers a tool that publishes image attachment blocks', async
       },
     },
   };
-  applyPlugin(ctx);
+  applyPlugin(ctx, Config({}));
   assert.equal(definition.name, 'segment_image');
 
   const args = { path, mode: 'document', batch_index: 0 };
