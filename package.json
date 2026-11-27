@@ -31,7 +31,10 @@
     "./core": {
       "types": "./lib/core/index.d.ts",
       "import": "./lib/core/index.js"
-    }
+    },
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
   },
   "files": [
     "lib",
@@ -39,7 +42,9 @@
     "README.md",
     "README.zh-CN.md",
     "LICENSE",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "locale/*.json",
+    "icon.svg"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

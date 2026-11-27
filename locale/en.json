@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Vision tiler",
+    "description": "Reads high-resolution images through the segment_image tool: one overview plus overlapping tiles, so small text survives instead of being downscaled away. Each batch returns PNG attachments and a DeepSeek vision-token estimate. The tool is offered only for the models listed in its settings, so other providers keep their own image handling. Every call adds model requests and vision tokens; disable the plugin to remove the tool."
+  }
+}
