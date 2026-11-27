@@ -260,8 +260,16 @@ export async function prepareImageBatch(
 
   const images: PreparedImage[] = [];
   if (includeOverview) {
-    const data = await encodePng(resizeToFit(normalized, overviewMaxEdge, overviewMaxEdge), pngCompressionLevel);
-    images.push({ kind: 'overview', name: `${imageSetId}-overview.png`, mediaType: 'image/png', data });
+    const overview = resizeToFit(normalized, overviewMaxEdge, overviewMaxEdge);
+    const data = await encodePng(overview, pngCompressionLevel);
+    images.push({
+      kind: 'overview',
+      name: `${imageSetId}-overview.png`,
+      mediaType: 'image/png',
+      data,
+      width: overview.width,
+      height: overview.height,
+    });
   }
 
   const tileImages: PreparedImage[] = [];
@@ -279,6 +287,8 @@ export async function prepareImageBatch(
       name: `${imageSetId}-${tile.id}.png`,
       mediaType: 'image/png',
       data,
+      width: tile.width,
+      height: tile.height,
       tile,
     });
   }
@@ -301,7 +311,6 @@ export async function prepareImageBatch(
     batchCount,
     remainingBatchIndices,
     tileIds: selectedTiles.map((tile) => tile.id),
-    estimatedVisionTokenCap: images.length * 384,
     images,
   };
 }

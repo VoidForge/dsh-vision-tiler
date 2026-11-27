@@ -4,7 +4,7 @@ import { mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Jimp, JimpMime } from 'jimp';
-import { isJsonValue } from '@deepseek-ai/dsh-session';
+import { isJsonValue } from '@deepseek-ai/dsh-util-values';
 import { apply as applyPlugin } from '../lib/index.js';
 import { applyOrientation, RasterImage } from '../lib/core/image-codec.js';
 import { auditCoverage, planTiles, prepareImageBatch } from '../lib/core/index.js';
@@ -69,10 +69,11 @@ test('image preparation makes deterministic, bounded batches', async () => {
   assert.deepEqual(first.remainingBatchIndices, [1, 2]);
   assert.deepEqual(second.remainingBatchIndices, [2]);
   assert.equal(new Set([...first.tileIds, ...second.tileIds]).size, 8);
-  assert.equal(first.estimatedVisionTokenCap, 5 * 384);
 
   for (const image of first.images) {
     const decoded = await Jimp.read(image.data);
+    assert.equal(image.width, decoded.width);
+    assert.equal(image.height, decoded.height);
     assert.ok(decoded.width <= 800);
     assert.ok(decoded.height <= 800);
   }

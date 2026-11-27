@@ -55,6 +55,8 @@ export interface PreparedImage {
     name: string;
     mediaType: 'image/png';
     data: Uint8Array;
+    width: number;
+    height: number;
     tile?: TileRect;
 }
 export interface PreparedImageBatch {
@@ -69,7 +71,6 @@ export interface PreparedImageBatch {
     batchCount: number;
     remainingBatchIndices: number[];
     tileIds: string[];
-    estimatedVisionTokenCap: number;
     images: PreparedImage[];
 }
 //# sourceMappingURL=types.d.ts.map
